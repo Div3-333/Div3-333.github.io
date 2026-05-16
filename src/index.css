@@ -1355,6 +1355,69 @@ a {
   border-bottom: 1px solid rgba(246, 239, 225, 0.08);
 }
 
+.adjacent-section {
+  background:
+    linear-gradient(180deg, rgba(134, 168, 255, 0.055), transparent 46%),
+    var(--bg);
+}
+
+.adjacent-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(32px, 6vw, 76px);
+  align-items: start;
+}
+
+.adjacent-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.adjacent-panel {
+  padding: 24px;
+  border: 1px solid rgba(246, 239, 225, 0.11);
+  background:
+    linear-gradient(90deg, rgba(98, 199, 182, 0.045), transparent 46%),
+    var(--surface-soft);
+}
+
+.adjacent-title {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.adjacent-title svg {
+  flex: 0 0 auto;
+  color: var(--blue);
+}
+
+.adjacent-title h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.adjacent-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.adjacent-panel span {
+  display: block;
+  margin-top: 16px;
+  color: var(--teal);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
 .closing-section {
   background:
     linear-gradient(90deg, rgba(98, 199, 182, 0.07), transparent 42%),
@@ -1426,6 +1489,7 @@ a {
   }
 
   .case-layout,
+  .adjacent-layout,
   .education-layout,
   .footer-layout {
     grid-template-columns: 1fr;

@@ -12,9 +12,12 @@ import {
   FileText,
   GraduationCap,
   Layers,
+  Languages,
   Lock,
   Mail,
+  Music,
   Network,
+  Palette,
   Shield,
 } from 'lucide-react';
 
@@ -252,6 +255,37 @@ const expertise = [
     title: 'Infrastructure',
     icon: Network,
     skills: ['Cloud migration', 'Serverless APIs', 'Performance tuning', 'Network fundamentals'],
+  },
+];
+
+const adjacentExpertise = [
+  {
+    title: 'Languages and AI evaluation',
+    icon: Languages,
+    body:
+      'Fluency and scholarly study in Hindi, Sanskrit, and Tamil, with additional research in Malayalam and Kannada. This supports how I think about morphology, tokenization, prompt evaluation, and failure cases in Indian-language AI systems.',
+    applied: 'Applied to LLM analysis, structured prompts, and multilingual data quality.',
+  },
+  {
+    title: 'Musicology and pattern analysis',
+    icon: Music,
+    body:
+      'South Asian music theory, classical dance, raga analysis, and the intersection of musicology with mathematical pattern recognition.',
+    applied: 'Applied to sequence, hierarchy, constraints, and signal patterns in data.',
+  },
+  {
+    title: 'Fine arts and interface judgment',
+    icon: Palette,
+    body:
+      'Deep interest in regional art forms like Tanjore art, Madhubani, Rajput miniatures, and traditional sculpting.',
+    applied: 'Applied to visual hierarchy, spacing, scanning paths, and evidence presentation.',
+  },
+  {
+    title: 'Classical texts and systems reading',
+    icon: FileText,
+    body:
+      'Sanskrit literature and classical technical texts sharpen careful reading, taxonomy, and interpretation under ambiguity.',
+    applied: 'Applied to threat modeling, research hygiene, and precise technical documentation.',
   },
 ];
 
@@ -764,6 +798,31 @@ function App() {
                       <li key={skill}>{skill}</li>
                     ))}
                   </ul>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section className="section adjacent-section" {...fadeIn}>
+        <div className="section-inner adjacent-layout">
+          <div>
+            <SectionHeader eyebrow="05 | Adjacent Expertise" title="The useful side interests">
+              These are not the headline, but they are part of the way I approach AI, data, security, and interface work.
+            </SectionHeader>
+          </div>
+          <div className="adjacent-grid">
+            {adjacentExpertise.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article className="adjacent-panel" key={item.title}>
+                  <div className="adjacent-title">
+                    <Icon size={19} />
+                    <h3>{item.title}</h3>
+                  </div>
+                  <p>{item.body}</p>
+                  <span>{item.applied}</span>
                 </article>
               );
             })}
