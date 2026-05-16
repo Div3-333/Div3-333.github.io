@@ -1,6 +1,6 @@
 # Divyanshu Sharma Portfolio
 
-Personal portfolio for Divyanshu Sharma, showcasing cybersecurity, data science, AI engineering, academic work, and selected technical projects.
+Personal portfolio for Divyanshu Sharma, focused on cybersecurity, data science, AI engineering, and public-safe technical case studies. The site uses sanitized evidence summaries for client work, avoiding confidential screenshots, domains, endpoints, tokens, and vendor identifiers.
 
 ## Tech Stack
 
@@ -12,9 +12,9 @@ Personal portfolio for Divyanshu Sharma, showcasing cybersecurity, data science,
 
 ## Content Approach
 
-- Commercial evidence is published as sanitized public summaries.
-- Raw client reports, domains, webhook paths, CRM identifiers, screenshots, and PII are excluded from the public site.
-- Project cards emphasize problem, build scope, technical challenge, and inspectable evidence.
+- Client work is summarized through public-safe derivative artifacts.
+- Raw reports, private screenshots, domains, endpoint paths, tokens, CRM identifiers, customer data, and vendor-specific configuration are excluded.
+- Project cards focus on problem, build scope, technical challenge, and what can be inspected publicly.
 
 ## Local Setup
 

@@ -95,9 +95,9 @@ const proofMetrics = [
 ];
 
 const caseEvidenceNotes = [
-  'Metrics are taken from before/after audit material and shown as public summaries.',
-  'Finding IDs are aliases; domains, endpoints, and workflow identifiers are not published.',
-  'The diagrams preserve system shape without exposing vendor or client-specific implementation details.',
+  'Metrics are reproduced from private reports as public-safe summaries.',
+  'Client names, domains, URLs, webhook paths, tokens, CRM identifiers, and customer data are removed.',
+  'Derivative artifacts preserve system shape using neutral placeholders such as client.example and CRM_SYSTEM.',
 ];
 
 const performanceEvidence = [
@@ -118,45 +118,66 @@ const performanceEvidence = [
 const vulnerabilityMatrix = [
   {
     id: 'R-01',
-    risk: 'Critical',
-    category: 'Client-side secret exposure',
-    remediation: 'Moved automation credentials behind serverless API boundaries and rotated exposed values.',
+    severity: 'Critical',
+    owasp: 'Cryptographic Failures',
+    summary: 'Client-side runtime exposed private workflow credentials to public inspection.',
+    remediation: 'Moved private workflow submission behind serverless validation and rotated exposed values.',
+    verification: 'Bundle review + credential rotation check',
+    status: 'Closed',
   },
   {
     id: 'R-02',
-    risk: 'Critical',
-    category: 'Unauthenticated intake pathway',
-    remediation: 'Added controlled request handling, schema validation, and origin-aware routing before downstream writes.',
+    severity: 'Critical',
+    owasp: 'Broken Access Control',
+    summary: 'Public intake path allowed unauthenticated workflow submission.',
+    remediation: 'Moved submission handling behind serverless validation boundary.',
+    verification: 'Manual request replay + schema validation test',
+    status: 'Closed',
   },
   {
     id: 'R-03',
-    risk: 'Critical',
-    category: 'Permissive browser execution policy',
-    remediation: 'Replaced broad script permissions with a strict Content Security Policy allowlist.',
+    severity: 'Critical',
+    owasp: 'Security Misconfiguration',
+    summary: 'Browser execution policy allowed broad script execution and weak source control.',
+    remediation: 'Replaced permissive script rules with a Content Security Policy allowlist.',
+    verification: 'Header inspection + browser console check',
+    status: 'Closed',
   },
   {
     id: 'R-04',
-    risk: 'High',
-    category: 'Third-party dependency surface',
-    remediation: 'Removed stale packages, reduced shipped JavaScript, and rechecked lockfile exposure.',
+    severity: 'High',
+    owasp: 'Vulnerable Components',
+    summary: 'Public bundle included stale dependencies and unnecessary runtime surface.',
+    remediation: 'Removed unused packages, reduced shipped JavaScript, and rechecked lockfile exposure.',
+    verification: 'Dependency audit + bundle inspection',
+    status: 'Closed',
   },
   {
     id: 'R-05',
-    risk: 'High',
-    category: 'Input trust boundary gap',
-    remediation: 'Shifted validation to server-side handlers before data reached private workflow systems.',
+    severity: 'High',
+    owasp: 'Injection',
+    summary: 'Lead object fields crossed trust boundaries before server-side validation.',
+    remediation: 'Validated LEAD_OBJECT payloads before downstream private workflow writes.',
+    verification: 'Schema validation test + malformed payload replay',
+    status: 'Closed',
   },
   {
     id: 'R-06',
-    risk: 'High',
-    category: 'Render-blocking script chain',
-    remediation: 'Deferred non-critical scripts and removed unused runtime baggage from the public page path.',
+    severity: 'High',
+    owasp: 'Security Logging and Monitoring',
+    summary: 'Public runtime made performance and failure diagnosis difficult during intake flow testing.',
+    remediation: 'Reduced script chain and separated public rendering from private workflow handling.',
+    verification: 'Before/after Lighthouse mobile audit',
+    status: 'Closed',
   },
   {
     id: 'R-07',
-    risk: 'High',
-    category: 'Accessibility and indexability failures',
-    remediation: 'Corrected metadata, landmarks, contrast, and crawl-facing semantics during the migration.',
+    severity: 'High',
+    owasp: 'Security Misconfiguration',
+    summary: 'Metadata, landmarks, and crawl-facing semantics were inconsistent after builder export.',
+    remediation: 'Corrected page semantics, contrast, landmarks, and crawl-facing metadata.',
+    verification: 'Accessibility audit + SEO crawl summary',
+    status: 'Closed',
   },
 ];
 
@@ -174,8 +195,8 @@ const projectCards = [
       'The hard part was forcing probabilistic model output into deterministic JSON that a UI can trust without fragile regex cleanup.',
     evidence: [
       'Inspectable source repository',
-      'Structured response schema',
-      'Sample root/suffix output model',
+      'Structured response schema validity',
+      'Root/suffix sample output artifact',
     ],
     links: [{ label: 'Source', href: 'https://github.com/Div3-333/cognition-n-context' }],
   },
@@ -192,8 +213,8 @@ const projectCards = [
       'Maintaining safety across a hybrid stack required clear trust boundaries between the UI, local files, Python processing, and packaged releases.',
     evidence: [
       'Source repository',
-      'Release hardening checklist',
-      'Local processing architecture notes',
+      'Local-only processing pipeline',
+      'No cloud upload required',
     ],
     links: [{ label: 'Source', href: 'https://github.com/Div3-333/Wrought-Iron' }],
   },
@@ -211,7 +232,7 @@ const projectCards = [
     evidence: [
       'Research repository',
       'Corpus frequency tables',
-      'Positional grammar summaries',
+      'Mini distribution chart',
     ],
     links: [{ label: 'Source', href: 'https://github.com/Div3-333/Indus-Valley-Script-IVS' }],
   },
@@ -317,19 +338,33 @@ function SectionHeader({ eyebrow, title, children }) {
 function ArchitectureMap({ variant }) {
   const before = variant === 'before';
   const nodes = before
-    ? ['Browser', 'Client bundle', 'Public automation path', 'Private workflow']
-    : ['Browser', 'Edge host', 'Serverless validation', 'Private workflow'];
+    ? [
+        { label: 'Browser' },
+        { label: 'Heavy builder runtime' },
+        { label: 'Public automation path', badge: 'Sensitive boundary exposed', tone: 'risk' },
+        { label: 'Private workflow' },
+      ]
+    : [
+        { label: 'Browser' },
+        { label: 'Edge deployment' },
+        { label: 'Serverless validation', badge: 'Schema validation', tone: 'safe' },
+        { label: 'Secret isolation', badge: 'Secrets removed from client', tone: 'safe' },
+        { label: 'Private workflow', badge: 'CSP allowlist', tone: 'safe' },
+      ];
 
   return (
     <div className={`architecture-map ${before ? 'is-before' : 'is-after'}`}>
       <div className="architecture-title">
         <span>{before ? 'Before' : 'After'}</span>
-        <strong>{before ? 'Exposed trust boundary' : 'Controlled trust boundary'}</strong>
+        <strong>{before ? 'Exposed trust boundary' : 'Controlled serverless boundary'}</strong>
       </div>
       <div className="architecture-flow" aria-label={`${variant} architecture`}>
         {nodes.map((node, index) => (
-          <div className="architecture-step" key={node}>
-            <div className="architecture-node">{node}</div>
+          <div className="architecture-step" key={node.label}>
+            <div className="architecture-node">
+              <strong>{node.label}</strong>
+              {node.badge && <span className={`architecture-badge badge-${node.tone}`}>{node.badge}</span>}
+            </div>
             {index < nodes.length - 1 && <ArrowRight className="architecture-arrow" size={18} />}
           </div>
         ))}
@@ -343,37 +378,52 @@ function ArchitectureMap({ variant }) {
   );
 }
 
-function LighthouseSnapshot() {
+function ClientSafeLighthouseArtifact() {
   return (
-    <div className="artifact-preview" aria-label="Sanitized Lighthouse summary">
-      <div className="artifact-toolbar">
-        <span />
-        <span />
-        <span />
-        <strong>PUBLIC_LIGHTHOUSE_SUMMARY</strong>
+    <div className="lighthouse-artifact" aria-label="Redacted Lighthouse public summary artifact">
+      <div className="artifact-report-header">
+        <div>
+          <span>Report type</span>
+          <strong>Lighthouse mobile audit | redacted public summary</strong>
+        </div>
+        <em>Private report, public-safe summary</em>
       </div>
-      <div className="artifact-grid">
-        <div className="artifact-score">
-          <p>SEO</p>
-          <strong>100</strong>
+
+      <div className="artifact-metric-grid">
+        <div>
+          <span>Before</span>
+          <strong>4,090ms</strong>
+          <p>Total blocking time</p>
         </div>
-        <div className="artifact-score">
-          <p>A11Y</p>
-          <strong>100</strong>
-        </div>
-        <div className="artifact-score is-hot">
-          <p>TBT</p>
+        <div>
+          <span>After</span>
           <strong>190ms</strong>
+          <p>Total blocking time</p>
+        </div>
+        <div>
+          <span>SEO</span>
+          <strong>100</strong>
+          <p>Post-migration score</p>
+        </div>
+        <div>
+          <span>Accessibility</span>
+          <strong>100</strong>
+          <p>Post-migration score</p>
         </div>
       </div>
-      <div className="artifact-lines">
-        <span className="line short" />
-        <span className="line" />
-        <span className="line redacted" />
-        <span className="line" />
-        <span className="line short" />
+
+      <div className="redacted-field-grid" aria-label="Redacted Lighthouse fields">
+        {['URL', 'Crawl path', 'Client domain', 'Internal page labels'].map((field) => (
+          <div className="redacted-field" key={field}>
+            <span>{field}</span>
+            <strong>REDACTED</strong>
+          </div>
+        ))}
       </div>
-      <div className="artifact-stamp">PUBLIC SUMMARY</div>
+
+      <p className="artifact-note">
+        Values are reproduced from private client report; raw report withheld for confidentiality.
+      </p>
     </div>
   );
 }
@@ -426,8 +476,8 @@ function SecurityTracker() {
         {vulnerabilityMatrix.map((item) => (
           <div className="tracker-cell" key={item.id}>
             <span>{item.id}</span>
-            <strong>{item.risk}</strong>
-            <em>Closed</em>
+            <strong>{item.severity}</strong>
+            <em>{item.status}</em>
           </div>
         ))}
       </div>
@@ -443,14 +493,27 @@ function ProjectVisual({ type }) {
           <span />
           <span />
           <span />
-          <strong>sample-output.json</strong>
+          <strong>schema-valid-output.json</strong>
         </div>
-        <pre>{`{
-  "token": "gacchati",
-  "root": "gam",
-  "features": ["present", "3sg"],
-  "confidence_note": "context checked"
-}`}</pre>
+        <div className="morphology-artifact">
+          <div className="morphology-row">
+            <span>Input token</span>
+            <strong>வீட்டில்</strong>
+          </div>
+          <div className="morphology-row">
+            <span>Detected root</span>
+            <strong>வீடு</strong>
+          </div>
+          <div className="morphology-row">
+            <span>Suffix / features</span>
+            <strong>இல் | locative case</strong>
+          </div>
+          <div className="morphology-row">
+            <span>Confidence note</span>
+            <strong>Sentence context checked</strong>
+          </div>
+          <div className="schema-chip">JSON schema valid</div>
+        </div>
       </div>
     );
   }
@@ -458,30 +521,36 @@ function ProjectVisual({ type }) {
   if (type === 'wrought') {
     return (
       <div className="project-visual pipeline-visual" aria-label="Local processing pipeline">
-        {['Local file', 'Validator', 'Python worker', 'Clean export'].map((step, index) => (
+        {['Import file', 'Validate schema', 'Local transform', 'Preview diff', 'Export cleaned dataset'].map((step, index) => (
           <div className="pipeline-step" key={step}>
             <Database size={16} />
             <span>{step}</span>
-            {index < 3 && <ArrowRight size={15} />}
+            {index < 4 && <ArrowRight size={15} />}
           </div>
         ))}
+        <div className="pipeline-note">No cloud upload required</div>
       </div>
     );
   }
 
   return (
     <div className="project-visual corpus-visual" aria-label="Indus Valley Script corpus coverage chart">
-      <div className="coverage-stat">
-        <span>60 signs</span>
-        <strong>75%</strong>
-        <p>of the analyzed corpus</p>
+      <div className="frequency-header">
+        <span>Frequency distribution</span>
+        <strong>Top 60 signs</strong>
       </div>
-      <div className="coverage-chart">
-        <div className="coverage-fill" />
+      <div className="coverage-stat">
+        <strong>75%</strong>
+        <p>corpus coverage</p>
+      </div>
+      <div className="frequency-bars" aria-hidden="true">
+        {[88, 74, 63, 52, 42, 34, 28, 22, 18, 14, 11, 8].map((height, index) => (
+          <span key={height + index} style={{ '--bar-height': `${height}%` }} />
+        ))}
       </div>
       <div className="coverage-legend">
-        <span>High-frequency sign set</span>
-        <span>Long tail</span>
+        <span>Top 60 signs</span>
+        <span>Long-tail signs</span>
       </div>
     </div>
   );
@@ -616,7 +685,7 @@ function App() {
               </div>
             </div>
             <div className="case-visual-stack">
-              <LighthouseSnapshot />
+              <ClientSafeLighthouseArtifact />
               <PerformanceDeltaPanel />
             </div>
           </div>
@@ -634,7 +703,7 @@ function App() {
               <div className="delta-number">190ms</div>
               <p>Validated after migration with trimmed scripts, isolated secrets, and cleaner page semantics.</p>
             </div>
-            <div className="comparison-panel is-verified">
+            <div className="comparison-panel is-checked">
               <p className="panel-label">Checked</p>
               <h3>Lighthouse checks</h3>
               <div className="delta-number">100 / 100</div>
@@ -659,16 +728,19 @@ function App() {
             <div className="matrix-heading">
               <AlertTriangle size={20} />
               <h3>Sanitized vulnerability matrix</h3>
-              <p>Public aliases only. No endpoint names, tokens, customer data, domains, or vendor-specific CRM details.</p>
+              <p>Public aliases only. No domains, URLs, endpoint paths, payloads, tokens, vendor configuration, or customer data.</p>
             </div>
             <div className="matrix-table-wrap">
               <table className="matrix-table">
                 <thead>
                   <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Risk</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">Public ID</th>
+                    <th scope="col">Severity</th>
+                    <th scope="col">OWASP category</th>
+                    <th scope="col">Public-safe finding summary</th>
                     <th scope="col">Remediation</th>
+                    <th scope="col">Verification method</th>
+                    <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -676,10 +748,15 @@ function App() {
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>
-                        <span className={`risk-pill risk-${item.risk.toLowerCase()}`}>{item.risk}</span>
+                        <span className={`risk-pill risk-${item.severity.toLowerCase()}`}>
+                          {item.severity}
+                        </span>
                       </td>
-                      <td>{item.category}</td>
+                      <td>{item.owasp}</td>
+                      <td>{item.summary}</td>
                       <td>{item.remediation}</td>
+                      <td>{item.verification}</td>
+                      <td>{item.status}</td>
                     </tr>
                   ))}
                 </tbody>
