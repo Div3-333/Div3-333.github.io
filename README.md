@@ -1,16 +1,28 @@
-# React + Vite
+# Portfolio: Divyanshu Sharma
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An industry-grade personal portfolio built with **React**, **Vite**, **Tailwind CSS v4**, and **Framer Motion**.
 
-Currently, two official plugins are available:
+## Objective
+To showcase technical depth across Cybersecurity, Data Science, and AI Engineering through high-signal commercial impact and academic research.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
+- **Frontend:** React 18, Vite
+- **Styling:** Tailwind CSS v4 (CSS-based configuration)
+- **Animations:** Framer Motion
+- **Icons:** Lucide-React
+- **Deployment:** GitHub Pages via GitHub Actions
 
-## React Compiler
+## Key Features
+- **Recruiter-Optimized Layout:** Prioritizes commercial impact and technical projects.
+- **Case Study Focused:** Experience and projects are presented as verifiable technical deep-dives.
+- **Performance:** Optimized for sub-200ms Total Blocking Time (TBT) and 100/100 Lighthouse scores.
+- **Polymathic Narrative:** Links background in linguistics and musicology to mathematical pattern recognition.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local Development
+1. Clone the repository.
+2. Install dependencies: `npm install`
+3. Start the dev server: `npm run dev`
+4. Build for production: `npm run build`
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Security Note
+This repository contains a GitHub Actions workflow for automated deployment. All confidential reports and raw CV generation scripts are maintained in a local `.gitignore` folder (`temp/`) to ensure technical integrity and data privacy.
