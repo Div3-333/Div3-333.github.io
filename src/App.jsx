@@ -5,7 +5,12 @@ import {
   Shield, 
   Database, 
   Cpu, 
-  Terminal
+  Terminal,
+  Languages,
+  Music,
+  Palette,
+  BookOpen,
+  Code2
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -36,7 +41,44 @@ const Portfolio = () => {
       title: "Wrought-Iron",
       subtitle: "Secure Data Wrangling & Analysis Desktop Application",
       tech: ["Rust", "Python", "Django", "SQLite", "PyInstaller"],
-      description: "Architected and shipped a cross-platform desktop application using a Rust/Python hybrid backend. Delivered a production-ready, security-hardened tool across 3 versioned releases."
+      description: "Architected a hybrid Rust/Python backend with a Django layer. Focused on SSDLC principles and eliminates backdoor vulnerabilities through explicit auditing."
+    },
+    {
+      title: "Indus Valley Script (IVS)",
+      subtitle: "Computational Epigraphy & Corpus Hygiene",
+      tech: ["Python", "LaTeX", "Data Science", "Epigraphy"],
+      description: "Treating undeciphered scripts as formal data systems. Utilizing Python for sign-inventory normalization and positional grammar analysis to validate linguistic hypotheses.",
+      link: "https://github.com/Div3-333/Indus-Valley-Script-IVS"
+    },
+    {
+      title: "Cognition-n-Context",
+      subtitle: "Context-Aware Insight Engine (Drishti)",
+      tech: ["TypeScript", "Python", "SQLite", "Full-Stack"],
+      description: "A framework for 'perceptual' data layers, mapping how situational context influences information processing and reasoning.",
+      link: "https://github.com/Div3-333/cognition-n-context"
+    }
+  ];
+
+  const humanitiesExpertise = [
+    {
+      icon: <Languages size={20} />,
+      title: "Linguistics",
+      details: "Sanskrit, Hindi, Tamil, Malayalam (Fluent); Kannada (Competent). Focus on comparative philology and ancient scripts."
+    },
+    {
+      icon: <Music size={20} />,
+      title: "Musicology",
+      details: "South Asian music theory, raga-analysis, and the intersection of musicology with mathematical pattern recognition."
+    },
+    {
+      icon: <Palette size={20} />,
+      title: "Fine Arts",
+      details: "Deep interest in Tanjore art, Madhubani, Rajput miniatures, and traditional sculpting. Trained in Kathak/Bharatnatyam."
+    },
+    {
+      icon: <BookOpen size={20} />,
+      title: "Classical Texts",
+      details: "In-depth study of Sanskrit literature and ancient technical treatises on art and aesthetics."
     }
   ];
 
@@ -53,7 +95,7 @@ const Portfolio = () => {
             DS
           </motion.span>
           <div className="flex gap-8 text-sm uppercase tracking-widest font-mono text-foreground/60">
-            {['About', 'Experience', 'Work', 'Skills'].map((item) => (
+            {['About', 'Experience', 'Work', 'Humanities'].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-accent-gold transition-colors">
                 {item}
               </a>
@@ -63,21 +105,21 @@ const Portfolio = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="h-screen flex flex-col justify-center items-center relative overflow-hidden px-6">
+      <section className="h-screen flex flex-col justify-center items-center relative overflow-hidden px-6 text-center">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center z-10"
+          className="z-10"
         >
           <h1 className="text-6xl md:text-8xl mb-4 text-glow font-serif">
             Divyanshu Sharma
           </h1>
           <p className="font-mono text-accent-gold tracking-[0.3em] uppercase mb-8 text-sm md:text-base">
-            Cybersecurity & Data Science
+            Cybersecurity • Data Science • Polymath
           </p>
           <div className="flex gap-4 justify-center">
-            <a href="mailto:dsha0098@student.monash.edu" className="p-3 border border-accent-gold/20 hover:border-accent-gold/60 transition-all rounded-full">
+            <a href="mailto:divyanshu.s.cs@gmail.com" className="p-3 border border-accent-gold/20 hover:border-accent-gold/60 transition-all rounded-full">
               <Mail size={20} className="text-accent-gold" />
             </a>
             <a href="https://linkedin.com/in/divyanshu-sharma-b08517283" target="_blank" className="p-3 border border-accent-gold/20 hover:border-accent-gold/60 transition-all rounded-full">
@@ -89,7 +131,6 @@ const Portfolio = () => {
           </div>
         </motion.div>
         
-        {/* Decorative Background Elements */}
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold/5 blur-[120px] rounded-full" />
         </div>
@@ -103,22 +144,28 @@ const Portfolio = () => {
             Professional Summary
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <p className="text-lg leading-relaxed text-foreground/80">
-              Cybersecurity and Data Science student at Monash University. I specialize in 
-              <span className="text-accent-gold font-bold"> real infrastructure migrations</span>, 
-              live vulnerability identification, and translating technical risk into commercial 
-              impact. I don't measure knowledge by what I've learned, but by what it lets me do for others.
-            </p>
+            <div className="space-y-6">
+              <p className="text-lg leading-relaxed text-foreground/80">
+                I operate at the intersection of <span className="text-accent-gold font-bold">computational rigor</span> and <span className="text-accent-gold italic font-serif">classical humanities</span>. 
+                As a Cybersecurity and Data Science student at Monash, I translate technical risk into commercial strategy.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/80">
+                My background in linguistics and musicology enables rapid pattern recognition across complex systems—whether they are ancient scripts or modern cloud architectures.
+              </p>
+            </div>
             <div className="border border-accent-gold/10 p-8 relative group">
                <Shield className="absolute -top-4 -left-4 text-accent-gold/40 group-hover:text-accent-gold transition-colors" size={32} />
                <div className="space-y-4">
                  <div className="flex items-center gap-3">
                    <div className="w-1.5 h-1.5 bg-accent-gold rounded-full" />
-                   <span className="font-mono text-sm">GPA: 3.778 / 4.0</span>
+                   <span className="font-mono text-sm">GPA: 3.778 / 4.0 | WAM: 87.3</span>
                  </div>
                  <div className="flex items-center gap-3">
                    <div className="w-1.5 h-1.5 bg-accent-gold rounded-full" />
-                   <span className="font-mono text-sm">WAM: 87.3</span>
+                   <span className="font-mono text-sm">Monash University</span>
+                 </div>
+                 <div className="pt-4 font-serif italic text-accent-gold/60">
+                   "Insight (Drishti) is the ultimate layer of data processing."
                  </div>
                </div>
             </div>
@@ -126,92 +173,98 @@ const Portfolio = () => {
         </motion.div>
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="section-container bg-navy/5">
+      {/* Work Section */}
+      <section id="work" className="section-container bg-navy/5">
         <motion.div {...fadeIn}>
           <h2 className="text-4xl mb-12 flex items-center gap-4">
             <span className="text-accent-gold text-lg font-mono">02.</span>
-            Professional Experience
+            Selected Research & Work
           </h2>
-          <div className="space-y-12">
-            {experience.map((exp, index) => (
-              <div key={index} className="card-old-money group">
-                <div className="flex flex-col md:flex-row justify-between mb-4">
-                  <h3 className="text-2xl text-accent-gold">{exp.company}</h3>
-                  <span className="font-mono text-sm opacity-50">{exp.period}</span>
+          <div className="grid md:grid-cols-1 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="relative group overflow-hidden border border-accent-gold/10 p-12 hover:bg-navy/10 transition-all duration-700">
+                <div className="relative z-10 flex flex-col md:flex-row justify-between items-start gap-8">
+                  <div className="flex-1">
+                    <h3 className="text-3xl mb-2 group-hover:text-accent-gold transition-colors">{project.title}</h3>
+                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-gold/60 mb-6">{project.subtitle}</p>
+                    <p className="max-w-3xl text-foreground/70 mb-8 text-lg">{project.description}</p>
+                    <div className="flex flex-wrap gap-3">
+                      {project.tech.map(t => (
+                        <span key={t} className="px-3 py-1 text-[10px] font-mono border border-accent-gold/20 text-accent-gold/70">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                  {project.link && (
+                    <a href={project.link} target="_blank" className="flex items-center gap-2 font-mono text-xs text-accent-gold hover:text-foreground transition-colors uppercase tracking-widest whitespace-nowrap">
+                      Source <Code2 size={16} />
+                    </a>
+                  )}
                 </div>
-                <h4 className="font-mono text-sm uppercase tracking-wider mb-4 text-foreground/70">{exp.role}</h4>
-                <p className="text-foreground/70 leading-relaxed">{exp.description}</p>
+                <Terminal className="absolute -bottom-8 -right-8 text-accent-gold/5 w-64 h-64 group-hover:text-accent-gold/10 transition-all duration-700" />
               </div>
             ))}
           </div>
         </motion.div>
       </section>
 
-      {/* Projects Section */}
-      <section id="work" className="section-container">
+      {/* Humanities Section */}
+      <section id="humanities" className="section-container">
         <motion.div {...fadeIn}>
           <h2 className="text-4xl mb-12 flex items-center gap-4">
             <span className="text-accent-gold text-lg font-mono">03.</span>
-            Selected Work
+            Classical Humanities & Polymathy
           </h2>
-          {projects.map((project, index) => (
-            <div key={index} className="relative group overflow-hidden border border-accent-gold/10 p-12 hover:bg-navy/10 transition-all duration-700">
-              <div className="relative z-10">
-                <h3 className="text-4xl mb-2 group-hover:text-accent-gold transition-colors">{project.title}</h3>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-gold/60 mb-6">{project.subtitle}</p>
-                <p className="max-w-2xl text-foreground/70 mb-8 text-lg">{project.description}</p>
-                <div className="flex flex-wrap gap-3">
-                  {project.tech.map(t => (
-                    <span key={t} className="px-3 py-1 text-[10px] font-mono border border-accent-gold/20 text-accent-gold/70">{t}</span>
-                  ))}
-                </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {humanitiesExpertise.map((item, index) => (
+              <div key={index} className="border border-accent-gold/5 p-6 hover:border-accent-gold/30 transition-all duration-500 bg-background/40">
+                <div className="text-accent-gold mb-4">{item.icon}</div>
+                <h3 className="font-serif text-xl mb-3 italic">{item.title}</h3>
+                <p className="text-sm text-foreground/60 leading-relaxed font-sans">{item.details}</p>
               </div>
-              <Terminal className="absolute -bottom-8 -right-8 text-accent-gold/5 w-64 h-64 group-hover:text-accent-gold/10 transition-all duration-700" />
-            </div>
-          ))}
+            ))}
+          </div>
         </motion.div>
       </section>
 
-      {/* Skills Section */}
+      {/* Expertise Section */}
       <section id="skills" className="section-container bg-navy/5">
         <motion.div {...fadeIn}>
           <h2 className="text-4xl mb-12 flex items-center gap-4">
             <span className="text-accent-gold text-lg font-mono">04.</span>
-            Expertise
+            Technical Expertise
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="space-y-6">
+            <div className="space-y-6 card-old-money">
               <div className="flex items-center gap-3 text-accent-gold">
                 <Shield size={20} />
-                <h3 className="font-serif text-xl italic">Security</h3>
+                <h3 className="font-serif text-xl italic text-glow">Security</h3>
               </div>
-              <ul className="font-mono text-sm space-y-3 text-foreground/60">
-                <li>Threat Modeling</li>
+              <ul className="font-mono text-xs space-y-3 text-foreground/60">
+                <li>Threat Modeling & Pentesting</li>
                 <li>Vulnerability Analysis</li>
                 <li>SSDLC Principles</li>
                 <li>Cryptographic Protocols</li>
               </ul>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 card-old-money">
               <div className="flex items-center gap-3 text-accent-gold">
                 <Database size={20} />
-                <h3 className="font-serif text-xl italic">Data & Ops</h3>
+                <h3 className="font-serif text-xl italic text-glow">Data & Ops</h3>
               </div>
-              <ul className="font-mono text-sm space-y-3 text-foreground/60">
+              <ul className="font-mono text-xs space-y-3 text-foreground/60">
                 <li>Python & SQL</li>
-                <li>Linux / Bash</li>
+                <li>Linux / Bash Architecture</li>
                 <li>Cisco Packet Tracer</li>
                 <li>TCP/IP & OSI Models</li>
               </ul>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 card-old-money">
               <div className="flex items-center gap-3 text-accent-gold">
                 <Cpu size={20} />
-                <h3 className="font-serif text-xl italic">Business</h3>
+                <h3 className="font-serif text-xl italic text-glow">Strategy</h3>
               </div>
-              <ul className="font-mono text-sm space-y-3 text-foreground/60">
-                <li>Risk Translation</li>
+              <ul className="font-mono text-xs space-y-3 text-foreground/60">
+                <li>Risk Liability Translation</li>
                 <li>Stakeholder Communication</li>
                 <li>Client Discovery</li>
                 <li>Technical Mentorship</li>
@@ -224,14 +277,14 @@ const Portfolio = () => {
       {/* Footer */}
       <footer className="py-20 border-t border-accent-gold/5 text-center">
         <div className="flex flex-col items-center gap-6">
-          <p className="font-serif italic text-2xl text-accent-gold">Striving for impact at scale.</p>
+          <p className="font-serif italic text-2xl text-accent-gold text-glow">Insight through context.</p>
           <div className="flex gap-8">
              <a href="https://github.com/Div3-333" className="text-foreground/40 hover:text-accent-gold transition-colors font-mono text-xs uppercase tracking-widest">GitHub</a>
              <a href="https://linkedin.com/in/divyanshu-sharma-b08517283" className="text-foreground/40 hover:text-accent-gold transition-colors font-mono text-xs uppercase tracking-widest">LinkedIn</a>
-             <a href="mailto:dsha0098@student.monash.edu" className="text-foreground/40 hover:text-accent-gold transition-colors font-mono text-xs uppercase tracking-widest">Email</a>
+             <a href="mailto:divyanshu.s.cs@gmail.com" className="text-foreground/40 hover:text-accent-gold transition-colors font-mono text-xs uppercase tracking-widest">Email</a>
           </div>
           <p className="font-mono text-[10px] uppercase tracking-widest text-foreground/20 mt-8">
-            © 2026 Divyanshu Sharma • Designed with Intent
+            © 2026 Divyanshu Sharma • Polymathic Inquiry
           </p>
         </div>
       </footer>
