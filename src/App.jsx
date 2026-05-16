@@ -19,8 +19,9 @@ import {
   CheckCircle2,
   ChevronRight,
   AlertCircle,
-  Layers,
-  X
+  X,
+  TrendingUp,
+  AlertTriangle
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -44,11 +45,6 @@ const Portfolio = () => {
         "Eradicated critical OWASP Top 10 vulnerabilities including public CRM webhook exposure.",
         "Systematically neutralized ghost dependencies that previously throttled mobile performance.",
         "Deployed strict Enterprise CSP whitelisting to provide an ironclad defense against XSS vectors."
-      ],
-      metrics: [
-        { label: "Vulnerabilities Remediated", value: "7 Critical", icon: <Shield size={14} /> },
-        { label: "Mobile TBT Reduction", value: "95.3%", icon: <Activity size={14} /> },
-        { label: "Lighthouse Scores", value: "100/100", icon: <CheckCircle2 size={14} /> }
       ],
       caseStudy: {
         title: "Infrastructure & Security Migration",
@@ -153,7 +149,7 @@ const Portfolio = () => {
               </button>
               
               <div className="p-8 md:p-16">
-                <div className="flex items-center gap-4 mb-8">
+                <div className="flex items-center gap-4 mb-12">
                   <Shield className="text-accent-gold" size={32} />
                   <h3 className="text-4xl md:text-5xl font-serif italic text-accent-gold tracking-tighter">
                     {activeCaseStudy.caseStudy.title}
@@ -175,14 +171,16 @@ const Portfolio = () => {
                       <h4 className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-gold/40 mb-6 flex items-center gap-2">
                         <AlertCircle size={12} /> Technical Problems Identified
                       </h4>
-                      <ul className="space-y-4 font-mono text-xs text-foreground/60">
-                        {activeCaseStudy.caseStudy.problems.map((p, i) => (
-                          <li key={i} className="flex gap-4 items-start">
-                            <span className="text-accent-gold/40 shrink-0">0{i+1}.</span>
-                            <span>{p}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="bg-background/40 border border-accent-gold/5 p-6 rounded-sm">
+                        <ul className="space-y-4 font-mono text-[10px] text-foreground/60">
+                          {activeCaseStudy.caseStudy.problems.map((p, i) => (
+                            <li key={i} className="flex gap-4 items-start border-b border-accent-gold/5 pb-2 last:border-0">
+                              <span className="text-accent-gold/40 shrink-0">FINDING_0{i+1}:</span>
+                              <span>{p}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </section>
                   </div>
 
@@ -202,15 +200,15 @@ const Portfolio = () => {
                     </section>
 
                     <section className="bg-accent-gold/5 border border-accent-gold/10 p-8">
-                      <h4 className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-gold mb-6">Measured Outcome</h4>
-                      <ul className="space-y-4">
+                      <h4 className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-gold mb-8">Measured Outcome (Verified)</h4>
+                      <div className="space-y-6">
                         {activeCaseStudy.caseStudy.evidence.map((e, i) => (
-                          <li key={i} className="flex gap-4 items-center text-accent-gold font-serif italic text-lg">
+                          <div key={i} className="flex items-center gap-4 text-accent-gold font-serif italic text-xl border-l-2 border-accent-gold/20 pl-6 py-1">
                             <CheckCircle2 size={18} className="shrink-0" />
                             {e}
-                          </li>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </section>
                   </div>
                 </div>
@@ -362,7 +360,7 @@ const Portfolio = () => {
           </h2>
           <div className="space-y-16">
             {commercialImpact.map((exp, index) => (
-              <div key={index} className="grid md:grid-cols-[1fr_2fr] gap-12">
+              <div key={index} className="grid md:grid-cols-[1.2fr_2fr] gap-16">
                 <div className="space-y-8">
                   <div className="card-old-money p-8 bg-navy/30">
                     <h3 className="text-4xl text-accent-gold font-serif mb-2">{exp.company}</h3>
@@ -370,32 +368,39 @@ const Portfolio = () => {
                     <p className="mt-4 font-bold text-xs uppercase tracking-tight text-accent-gold/80">{exp.role}</p>
                     <button 
                       onClick={() => setActiveCaseStudy(exp)}
-                      className="mt-8 flex items-center gap-2 font-mono text-[10px] text-accent-gold hover:text-foreground transition-all uppercase tracking-[0.2em] bg-accent-gold/5 px-6 py-3 border border-accent-gold/20 hover:border-accent-gold/60 w-full justify-center group"
+                      className="mt-8 flex items-center gap-2 bg-accent-gold text-background px-6 py-3 rounded-sm font-mono text-[10px] uppercase tracking-[0.2em] transition-all font-bold group shadow-[0_0_15px_rgba(212,175,55,0.1)] hover:bg-accent-brass"
                     >
-                      View Full Case Study <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      Evidence & Case Study <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
-                  <div className="grid gap-4">
-                    {exp.metrics.map((m, i) => (
-                      <div key={i} className="flex items-center justify-between p-4 border border-accent-gold/10 bg-navy/5">
-                        <div className="flex items-center gap-3 text-accent-gold/60 uppercase font-mono text-[10px] tracking-widest">
-                          {m.icon} {m.label}
-                        </div>
-                        <div className="text-accent-gold font-serif italic text-lg">{m.value}</div>
-                      </div>
-                    ))}
+                  
+                  {/* Proof Visualization - Sanitized Metrics */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-background/40 border border-accent-gold/10 p-6 text-center">
+                       <Shield className="text-accent-gold/60 mx-auto mb-3" size={20} />
+                       <p className="text-2xl font-serif text-accent-gold italic">0</p>
+                       <p className="text-[8px] uppercase tracking-widest text-foreground/40 mt-1">Residual Critical Vulnerabilities</p>
+                    </div>
+                    <div className="bg-background/40 border border-accent-gold/10 p-6 text-center">
+                       <Activity className="text-accent-gold/60 mx-auto mb-3" size={20} />
+                       <p className="text-2xl font-serif text-accent-gold italic">190ms</p>
+                       <p className="text-[8px] uppercase tracking-widest text-foreground/40 mt-1">Final Mobile TBT</p>
+                    </div>
                   </div>
                 </div>
-                <div className="space-y-8 py-4">
-                  <div className="border-l-2 border-accent-gold/20 pl-8 space-y-8">
-                    <p className="text-xl text-foreground/70 leading-relaxed font-serif italic">
+
+                <div className="space-y-12">
+                  <div className="border-l-2 border-accent-gold/20 pl-8 space-y-10">
+                    <p className="text-xl text-foreground/70 leading-relaxed font-serif italic max-w-2xl">
                       {exp.summary}
                     </p>
-                    <div className="grid gap-6">
+                    <div className="grid gap-8">
                       {exp.achievements.map((item, i) => (
-                        <div key={i} className="flex gap-4 items-start text-foreground/60 leading-relaxed group hover:text-foreground transition-colors">
-                          <Zap size={18} className="text-accent-gold shrink-0 mt-1 shadow-glow" />
-                          <span>{item}</span>
+                        <div key={i} className="flex gap-6 items-start text-foreground/70 leading-relaxed group transition-all">
+                          <div className="mt-1 bg-accent-gold/10 p-2 rounded-full text-accent-gold shrink-0">
+                            <Zap size={16} />
+                          </div>
+                          <span className="text-lg">{item}</span>
                         </div>
                       ))}
                     </div>
@@ -422,21 +427,21 @@ const Portfolio = () => {
                     <h3 className="text-4xl mb-2 group-hover:text-accent-gold transition-colors font-serif italic tracking-tight">{project.title}</h3>
                     <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-accent-gold/60 mb-10">{project.subtitle}</p>
                     
-                    <div className="grid md:grid-cols-2 gap-12 mb-10 text-sm leading-relaxed text-foreground/70">
-                      <div>
+                    <div className="grid md:grid-cols-2 gap-x-16 gap-y-10 mb-10 text-sm leading-relaxed text-foreground/70">
+                      <div className="pl-0"> {/* Explicitly removing any accidental padding/indent */}
                         <h4 className="font-mono text-[10px] uppercase text-accent-gold/40 mb-3 tracking-widest">Problem</h4>
                         <p>{project.problem}</p>
                       </div>
-                      <div>
+                      <div className="pl-0">
                         <h4 className="font-mono text-[10px] uppercase text-accent-gold/40 mb-3 tracking-widest">The Build</h4>
                         <p>{project.built}</p>
                       </div>
-                      <div className="md:col-span-2 grid md:grid-cols-2 gap-12 bg-navy/10 p-8 border border-accent-gold/5">
-                        <div>
+                      <div className="md:col-span-2 grid md:grid-cols-2 gap-x-16 gap-y-10 bg-navy/10 p-10 border border-accent-gold/5 mt-4">
+                        <div className="pl-0">
                           <h4 className="font-mono text-[10px] uppercase text-accent-gold/40 mb-3 tracking-widest">Technical Challenge</h4>
                           <p>{project.challenge}</p>
                         </div>
-                        <div>
+                        <div className="pl-0">
                           <h4 className="font-mono text-[10px] uppercase text-accent-gold/40 mb-3 tracking-widest">Result</h4>
                           <p className="text-foreground/90 italic font-serif text-lg leading-snug">{project.result}</p>
                         </div>
@@ -491,18 +496,18 @@ const Portfolio = () => {
                 </ul>
               </div>
             </div>
-            <div>
+            <div className="w-full">
               <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
                 <span className="text-accent-gold text-lg font-mono tracking-tighter">05.</span>
                 Expertise
               </h2>
-              <div className="grid gap-12">
+              <div className="grid gap-12 w-full">
                 {[
                   { title: "Cybersecurity", icon: <Lock size={20} />, skills: "Vulnerability Modeling, Pentesting, Cryptography, SSDLC, Access Control" },
                   { title: "Data Science & AI", icon: <Binary size={20} />, skills: "Statistical Analysis, LLM Integration, Data Viz, Algorithmic Efficiency" },
                   { title: "Infrastructure", icon: <Globe size={20} />, skills: "TCP/IP, Cloud Migration, Linux/Bash Architecture, Network Performance" }
                 ].map((cat, i) => (
-                  <div key={i} className="flex gap-8 p-8 border border-accent-gold/5 bg-background/40 hover:border-accent-gold/20 transition-all group">
+                  <div key={i} className="flex gap-8 p-8 border border-accent-gold/5 bg-background/40 hover:border-accent-gold/20 transition-all group w-full">
                     <div className="text-accent-gold bg-navy/20 p-5 rounded-sm h-fit group-hover:scale-110 transition-transform">{cat.icon}</div>
                     <div>
                       <h4 className="font-serif italic text-3xl text-accent-gold mb-3">{cat.title}</h4>
@@ -514,7 +519,7 @@ const Portfolio = () => {
                 ))}
               </div>
               
-              <div className="mt-20 text-center p-12 border border-accent-gold/10 bg-navy/20">
+              <div className="mt-20 p-12 border border-accent-gold/10 bg-navy/20 w-full text-center"> {/* Removed skew/right-align */}
                  <p className="font-mono text-xs text-foreground/50 uppercase tracking-[0.3em] mb-8">Interested in secure, data-heavy systems?</p>
                  <a href="mailto:divyanshu.s.cs@gmail.com" className="text-4xl md:text-6xl font-serif italic text-accent-gold hover:text-foreground transition-colors border-b border-accent-gold/20 pb-4 inline-block">
                    Get in touch.

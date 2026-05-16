@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO Audit — procaresolar.com.au</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f3;
+      color: #1a1a18;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+    .subtitle { font-size: 13px; color: #5f5e5a; margin-bottom: 1.75rem; }
+
+    /* Score cards */
+    .score-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+    .score-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 14px 16px; }
+    .score-card .label { font-size: 12px; color: #5f5e5a; margin-bottom: 6px; }
+    .score-card .value { font-size: 22px; font-weight: 500; }
+    .score-card .bar { height: 4px; border-radius: 2px; margin-top: 8px; background: #e8e8e4; }
+    .score-card .bar-fill { height: 100%; border-radius: 2px; }
+
+    /* Sections */
+    .section { margin-bottom: 2rem; }
+    .section-title {
+      font-size: 11px; font-weight: 500; color: #5f5e5a;
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: 10px;
+      border-bottom: 0.5px solid #d3d1c7;
+      padding-bottom: 6px;
+    }
+
+    /* Issues */
+    .issue {
+      background: #fff;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .dot.crit { background: #e24b4a; }
+    .dot.warn { background: #ef9f27; }
+    .dot.info { background: #378add; }
+    .dot.good { background: #639922; }
+    .issue .ttl { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+    .issue .desc { font-size: 13px; color: #5f5e5a; line-height: 1.6; }
+
+    /* Badges */
+    .badge {
+      display: inline-block; font-size: 11px;
+      padding: 3px 9px; border-radius: 4px;
+      margin: 0 4px 6px 0;
+    }
+    .badge.warn { background: #faeeda; color: #854f0b; }
+    .badge.good { background: #eaf3de; color: #3b6d11; }
+
+    /* Keyword grid */
+    .kw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+    .kw-card {
+      border: 0.5px solid #d3d1c7;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      background: #fff;
+    }
+    .kw-card .kw { font-weight: 500; margin-bottom: 3px; }
+    .kw-card .vol { font-size: 12px; color: #5f5e5a; }
+
+    .comp-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+
+    .footer {
+      font-size: 12px;
+      color: #888780;
+      border-top: 0.5px solid #d3d1c7;
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+
+    @media print {
+      body { background: #fff; padding: 1rem; }
+      .issue, .kw-card, .score-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>SEO Audit — procaresolar.com.au</h1>
+  <p class="subtitle">Solar panel maintenance &middot; Melbourne, VIC &middot; April 2026</p>
+
+  <!-- Score cards -->
+  <div class="score-row">
+    <div class="score-card">
+      <div class="label">Overall score</div>
+      <div class="value" style="color:#ef9f27;">38 / 100</div>
+      <div class="bar"><div class="bar-fill" style="width:38%;background:#ef9f27;"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="label">Technical SEO</div>
+      <div class="value" style="color:#e24b4a;">22 / 100</div>
+      <div class="bar"><div class="bar-fill" style="width:22%;background:#e24b4a;"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="label">On-page SEO</div>
+      <div class="value" style="color:#ef9f27;">45 / 100</div>
+      <div class="bar"><div class="bar-fill" style="width:45%;background:#ef9f27;"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="label">Content</div>
+      <div class="value" style="color:#ef9f27;">50 / 100</div>
+      <div class="bar"><div class="bar-fill" style="width:50%;background:#ef9f27;"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="label">Local SEO</div>
+      <div class="value" style="color:#e24b4a;">30 / 100</div>
+      <div class="bar"><div class="bar-fill" style="width:30%;background:#e24b4a;"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="label">Off-page / links</div>
+      <div class="value" style="color:#e24b4a;">20 / 100</div>
+      <div class="bar"><div class="bar-fill" style="width:20%;background:#e24b4a;"></div></div>
+    </div>
+  </div>
+
+  <!-- Critical issues -->
+  <div class="section">
+    <div class="section-title">Critical issues — fix first</div>
+
+    <div class="issue">
+      <div class="dot crit"></div>
+      <div>
+        <div class="ttl">JavaScript-only rendering (no HTML content served)</div>
+        <div class="desc">The server returns a nearly empty HTML shell — only the text "ProCareSolar" is in the source. The site is a client-side SPA, so Googlebot sees blank pages on first crawl. This is the single most damaging technical issue and explains why only 2 pages are indexed. Fix: add server-side rendering (SSR) or a prerender/CDN layer (e.g. Wix SSR is built-in, or use Prerender.io).</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="dot crit"></div>
+      <div>
+        <div class="ttl">Only 2 pages indexed by Google</div>
+        <div class="desc">A site:procaresolar.com.au search returns only the homepage and /get-quote. Service pages, about page, and any other content are invisible to search engines. Every service needs its own crawlable, indexable URL.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="dot crit"></div>
+      <div>
+        <div class="ttl">No Google Business Profile signals visible</div>
+        <div class="desc">For a local trade service in Melbourne, the Google Business Profile (GBP) is often responsible for more leads than the website. No GBP listing or review count is surfacing in search results. Without this, the site won't appear in the local map pack — the 3 results shown above organic listings.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="dot crit"></div>
+      <div>
+        <div class="ttl">No reviews or trust signals</div>
+        <div class="desc">Competitors like Mr Sparkle show "300+ 5-star Google reviews" directly in search snippets. ProCareSolar has no visible review count. In a trust-dependent trade category, this is a conversion and ranking gap.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- On-page issues -->
+  <div class="section">
+    <div class="section-title">On-page issues</div>
+
+    <div class="issue">
+      <div class="dot warn"></div>
+      <div>
+        <div class="ttl">Page title includes "Solar Panel Installation" — inaccurate</div>
+        <div class="desc">The title tag shown in search is "ProCareSolar | Solar Panel Installation | Solar Panel Cleaning…". The business doesn't appear to install panels. This creates a relevance mismatch with the actual service and could attract the wrong search intent. Recommended title: <em>"Solar Panel Cleaning &amp; Maintenance Melbourne | ProCareSolar"</em>.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="dot warn"></div>
+      <div>
+        <div class="ttl">No dedicated service pages</div>
+        <div class="desc">Services like drone thermal imaging, robotic cleaning, bird proofing, inverter upgrades, and inspections are all described on one page. Each service should have its own URL (e.g. /solar-panel-drone-inspection-melbourne) to rank for long-tail search terms independently.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="dot warn"></div>
+      <div>
+        <div class="ttl">Grammar error in visible content</div>
+        <div class="desc">"Our specialised robotic equipments" — "equipment" is uncountable in English and does not take a plural. Small errors like this reduce E-E-A-T (expertise/authority/trust) signals Google uses to evaluate content quality.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="dot warn"></div>
+      <div>
+        <div class="ttl">No suburb-level landing pages</div>
+        <div class="desc">Competitors rank by serving pages like /solar-panel-cleaning-east-melbourne, /solar-panel-cleaning-bayside etc. A Melbourne trade business can capture high-intent local searches through geo-targeted pages for the suburbs it services.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="dot info"></div>
+      <div>
+        <div class="ttl">No structured data (schema markup)</div>
+        <div class="desc">No LocalBusiness, Service, FAQPage, or Review schema is evident. Schema helps Google display rich results (star ratings, FAQs, service details) directly in the SERP, improving click-through rate without requiring a rank change.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Competitive gap -->
+  <div class="section">
+    <div class="section-title">Competitive gap — who you're up against</div>
+    <p style="font-size:13px;color:#5f5e5a;margin-bottom:10px;">Established players ranking for "solar panel cleaning Melbourne":</p>
+    <div class="comp-row">
+      <span class="badge warn">Mr Sparkle — 300+ reviews</span>
+      <span class="badge warn">Solstra — 20 yrs, licensed electrician</span>
+      <span class="badge warn">Bax Clean — multi-service brand</span>
+      <span class="badge warn">CleanMade — purified water system</span>
+      <span class="badge warn">Henderson &amp; Co — family owned, 20+ yrs</span>
+      <span class="badge good">ProCareSolar — drone + robotics differentiation</span>
+    </div>
+    <p style="font-size:13px;color:#5f5e5a;">Your differentiation (drone thermal imaging, robotic industrial cleaning) is genuinely unique — but it needs its own SEO-optimised pages to surface in search results.</p>
+  </div>
+
+  <!-- Keywords -->
+  <div class="section">
+    <div class="section-title">Target keywords to build pages around</div>
+    <div class="kw-grid">
+      <div class="kw-card"><div class="kw">solar panel cleaning Melbourne</div><div class="vol">High volume · high competition</div></div>
+      <div class="kw-card"><div class="kw">solar panel inspection Melbourne</div><div class="vol">Medium volume · medium comp</div></div>
+      <div class="kw-card"><div class="kw">drone solar panel inspection</div><div class="vol">Low-med volume · low comp ✓</div></div>
+      <div class="kw-card"><div class="kw">solar thermal imaging Melbourne</div><div class="vol">Low volume · very low comp ✓</div></div>
+      <div class="kw-card"><div class="kw">solar bird proofing Melbourne</div><div class="vol">Medium volume · low comp ✓</div></div>
+      <div class="kw-card"><div class="kw">inverter repair Melbourne</div><div class="vol">Medium volume · medium comp</div></div>
+      <div class="kw-card"><div class="kw">commercial solar cleaning Melbourne</div><div class="vol">Low volume · low comp ✓</div></div>
+      <div class="kw-card"><div class="kw">robotic solar panel cleaning</div><div class="vol">Low volume · very low comp ✓</div></div>
+    </div>
+  </div>
+
+  <!-- Action plan -->
+  <div class="section">
+    <div class="section-title">Recommended action plan — priority order</div>
+
+    <div class="issue">
+      <div class="dot crit"></div>
+      <div>
+        <div class="ttl">1. Fix JS rendering — enable SSR or prerendering</div>
+        <div class="desc">Nothing else matters until Googlebot can read your pages. If using Wix, enable Wix's built-in SSR. If custom-built, add a prerender service or move to a server-rendered framework.</div>
+      </div>
+    </div>
+    <div class="issue">
+      <div class="dot crit"></div>
+      <div>
+        <div class="ttl">2. Optimise and verify Google Business Profile</div>
+        <div class="desc">Add all services, photos, opening hours, and service area suburbs. This is free and can produce ranking results within weeks for local pack searches.</div>
+      </div>
+    </div>
+    <div class="issue">
+      <div class="dot crit"></div>
+      <div>
+        <div class="ttl">3. Build individual service pages with on-page SEO</div>
+        <div class="desc">One page per service with unique H1, meta title, meta description, 400+ words of content, and an FAQ section. Target pages: cleaning, inspection, drone imaging, bird proofing, inverter repair, robotic cleaning.</div>
+      </div>
+    </div>
+    <div class="issue">
+      <div class="dot warn"></div>
+      <div>
+        <div class="ttl">4. Add LocalBusiness + Service schema markup</div>
+        <div class="desc">Implement JSON-LD schema on all pages. Include NAP (name, address, phone), service types, and area served. Add FAQPage schema to each service page.</div>
+      </div>
+    </div>
+    <div class="issue">
+      <div class="dot warn"></div>
+      <div>
+        <div class="ttl">5. Actively collect Google reviews</div>
+        <div class="desc">Send a follow-up SMS/email after every job with a direct Google review link. Aim for 20+ reviews within 3 months. Reviews are a direct local ranking signal and drastically improve click-through rates.</div>
+      </div>
+    </div>
+    <div class="issue">
+      <div class="dot warn"></div>
+      <div>
+        <div class="ttl">6. Create suburb landing pages</div>
+        <div class="desc">Add pages for the top 10–15 suburbs you service (e.g. St Kilda, Fitzroy, Essendon, Box Hill). Each page targets "[service] [suburb]" keywords and links to the relevant service pages.</div>
+      </div>
+    </div>
+    <div class="issue">
+      <div class="dot info"></div>
+      <div>
+        <div class="ttl">7. Build local backlinks</div>
+        <div class="desc">Get listed on hipages, ServiceSeeking, Houzz, TrueLocal, and local business directories. Reach out to solar panel installers who could refer maintenance customers and link to your site.</div>
+      </div>
+    </div>
+    <div class="issue">
+      <div class="dot info"></div>
+      <div>
+        <div class="ttl">8. Start a content blog</div>
+        <div class="desc">Publish 1–2 articles/month targeting informational queries: "how often should you clean solar panels in Melbourne", "signs your solar inverter is failing", "drone vs manual solar inspection". These build topical authority and attract inbound links.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Audit based on crawl data, search result analysis, and competitive benchmarking &middot; April 2026</div>
+
+</div>
+</body>
+</html>
