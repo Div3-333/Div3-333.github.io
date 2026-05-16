@@ -528,8 +528,9 @@ function App() {
           <p className="hero-kicker">Cybersecurity | Data Science | AI Engineering</p>
           <h1>Divyanshu Sharma</h1>
           <p className="hero-copy">
-            I build secure, data-heavy systems across cybersecurity, AI, and infrastructure, with an emphasis
-            on measurable performance, clear trust boundaries, and code that can be reviewed.
+            Cybersecurity and Data Science student at Monash University. My studies gave me the frameworks;
+            real infrastructure migrations, live vulnerability identification, and briefing non-technical
+            stakeholders on commercial risk made them real.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="/Divyanshu_Sharma_CV.pdf" download>
@@ -832,14 +833,12 @@ function App() {
 
       <motion.section className="section closing-section" {...fadeIn}>
         <div className="section-inner closing-note">
-          <p className="eyebrow">Working thesis</p>
+          <p className="eyebrow">Knowledge and service</p>
           <blockquote>
-            Structural integrity shows up in language, data, security, and infrastructure. I like work where
-            that structure has to hold under real constraints.
+            I don't measure knowledge by what I've learned but by what it lets me do for others.
           </blockquote>
           <p>
-            My linguistics and arts background still shapes how I think, but the portfolio keeps the focus on
-            engineering output: code, systems, measurements, and decisions.
+            I seek experience at a scale where the stakes actually matter.
           </p>
         </div>
       </motion.section>
