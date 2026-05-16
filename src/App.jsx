@@ -80,6 +80,42 @@ const Portfolio = () => {
     }
   ];
 
+  const technicalSkills = [
+    {
+      category: "Cybersecurity",
+      icon: <Lock size={18} />,
+      skills: ["Vulnerability Modeling", "Pentesting", "Cryptographic Protocols", "SSDLC"]
+    },
+    {
+      category: "Data Science & AI",
+      icon: <Binary size={18} />,
+      skills: ["Statistical Analysis", "LLM Integration", "Algorithm Efficiency", "Python/SQL"]
+    },
+    {
+      category: "Infrastructure",
+      icon: <Globe size={18} />,
+      skills: ["OSI/TCP-IP Architecture", "Cloud Migration", "LAN/WAN", "Linux Architecture"]
+    }
+  ];
+
+  const humanitiesCognitiveLink = [
+    {
+      icon: <Languages size={16} />,
+      title: "Linguistics & AI Modeling",
+      details: "Fluent in Hindi, Sanskrit, and Tamil. Scholarly philology expertise directly informs my work in LLM based morphological analysis."
+    },
+    {
+      icon: <Music size={16} />,
+      title: "Musicology & Pattern",
+      details: "South Asian music theory and raga analysis. Leveraging mathematical pattern recognition to solve complex data structural problems."
+    },
+    {
+      icon: <Palette size={16} />, 
+      title: "Fine Arts & Structure",
+      details: "Tanjore and Rajput miniatures. Traditional arts drive focus on visual stability and spatial structural integrity in engineering."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent-gold/30 selection:text-accent-gold overflow-x-hidden">
       {/* Navigation */}
@@ -93,7 +129,7 @@ const Portfolio = () => {
             DS
           </motion.span>
           <div className="flex gap-10 text-[10px] uppercase tracking-[0.3em] font-mono text-foreground/60">
-            {['Impact', 'Projects', 'Academic', 'Expertise', 'About'].map((item) => (
+            {['About', 'Impact', 'Projects', 'Academic', 'Expertise'].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-accent-gold transition-all">
                 {item}
               </a>
@@ -110,11 +146,11 @@ const Portfolio = () => {
           transition={{ duration: 1 }}
           className="z-10"
         >
-          <h1 className="text-7xl md:text-9xl mb-6 text-glow font-serif">
+          <h1 className="text-7xl md:text-9xl mb-8 text-glow font-serif">
             Divyanshu Sharma
           </h1>
-          <p className="font-mono text-accent-gold tracking-[0.4em] uppercase mb-12 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
-            I build secure, data-driven systems across cybersecurity, AI, and infrastructure — with a focus on measurable performance and technical correctness.
+          <p className="font-mono text-accent-gold tracking-[0.4em] uppercase mb-12 text-xs md:text-sm">
+            Data Science • AI Engineering • Cybersecurity
           </p>
           
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
@@ -144,11 +180,33 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* About Section - AUTHENTIC SUMMARY */}
+      <section id="about" className="section-container">
+        <motion.div {...fadeIn}>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
+              <span className="text-accent-gold text-lg font-mono">01.</span>
+              Professional Summary
+            </h2>
+            <div className="space-y-8 text-xl md:text-2xl leading-relaxed text-foreground/80 font-serif">
+              <p>
+                Cybersecurity and Data Science student at Monash University. My studies gave me the frameworks; real infrastructure migrations,
+                live vulnerability identification, and briefing non-technical stakeholders on commercial risk made them real.
+              </p>
+              <p className="text-accent-gold italic">
+                I don't measure knowledge by what I've learned but by what it lets me do for others. I seek
+                experience at a scale where the stakes actually matter.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Impact Section */}
-      <section id="impact" className="section-container">
+      <section id="impact" className="section-container bg-navy/5">
         <motion.div {...fadeIn}>
           <h2 className="text-4xl mb-16 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
-            <span className="text-accent-gold text-lg font-mono">01.</span>
+            <span className="text-accent-gold text-lg font-mono">02.</span>
             Commercial Impact
           </h2>
           <div className="space-y-16">
@@ -194,10 +252,10 @@ const Portfolio = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="section-container bg-navy/5">
+      <section id="projects" className="section-container">
         <motion.div {...fadeIn}>
           <h2 className="text-4xl mb-16 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
-            <span className="text-accent-gold text-lg font-mono">02.</span>
+            <span className="text-accent-gold text-lg font-mono">03.</span>
             Technical Projects
           </h2>
           <div className="grid gap-12">
@@ -246,66 +304,68 @@ const Portfolio = () => {
         </motion.div>
       </section>
 
-      {/* Academic & Expertise Section */}
-      <section id="academic" className="section-container">
+      {/* Academic Section */}
+      <section id="academic" className="section-container bg-navy/5">
         <motion.div {...fadeIn}>
-          <div className="grid md:grid-cols-2 gap-20 items-start">
-            <div>
-              <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
-                <span className="text-accent-gold text-lg font-mono">03.</span>
-                Academic Core
-              </h2>
-              <div className="bg-navy/20 border border-accent-gold/10 p-10 rounded-sm relative shadow-2xl">
-                <Shield className="absolute top-8 right-8 text-accent-gold/20" size={40} />
-                <div className="mb-10">
-                  <h3 className="text-accent-gold font-serif text-3xl italic mb-2 tracking-tight">Monash University</h3>
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] opacity-60 text-foreground">Bachelor of Computer Science</p>
-                  <div className="flex gap-6 mt-4 font-mono text-[10px] text-accent-gold uppercase tracking-widest">
-                    <span>GPA: 3.778 / 4.0</span>
-                    <span>WAM: 87.3</span>
-                  </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
+              <span className="text-accent-gold text-lg font-mono">04.</span>
+              Academic Core
+            </h2>
+            <div className="bg-background/40 border border-accent-gold/10 p-10 rounded-sm relative shadow-2xl">
+              <Shield className="absolute top-8 right-8 text-accent-gold/20" size={40} />
+              <div className="mb-10">
+                <h3 className="text-accent-gold font-serif text-3xl italic mb-2 tracking-tight">Monash University</h3>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] opacity-60 text-foreground">Bachelor of Computer Science</p>
+                <div className="flex gap-6 mt-4 font-mono text-[10px] text-accent-gold uppercase tracking-widest">
+                  <span>GPA: 3.778 / 4.0</span>
+                  <span>WAM: 87.3</span>
                 </div>
-                <ul className="font-mono text-[11px] space-y-6 text-foreground/70">
-                  <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1">FIT2173: SOFTWARE SECURITY</span> Design and realization of secure software for memory exploits and web applications.</li>
-                  <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1">FIT2004: ALGORITHMS & DATA STRUCTURES</span> Analysis of greedy, dynamic programming, and space-time complexity.</li>
-                  <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1">FIT2165: COMPUTER NETWORKS</span> Configuration of data communication and analysis of LAN/WAN architectures.</li>
-                  <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1">FIT2094: DATABASES</span> Normalization, complex SQL queries, and theoretical basis of the relational model.</li>
-                </ul>
               </div>
-            </div>
-            <div>
-              <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
-                <span className="text-accent-gold text-lg font-mono">04.</span>
-                Expertise
-              </h2>
-              <div className="grid gap-8">
-                {[
-                  { title: "Cybersecurity", icon: <Lock size={20} />, skills: "Vulnerability Modeling, Pentesting, Cryptography, SSDLC, Access Control" },
-                  { title: "Data Science & AI", icon: <Binary size={20} />, skills: "Statistical Analysis, LLM Integration, Data Viz, Algorithmic Efficiency" },
-                  { title: "Infrastructure", icon: <Globe size={20} />, skills: "TCP/IP, Cloud Migration, Linux/Bash Architecture, Network Performance" }
-                ].map((cat, i) => (
-                  <div key={i} className="flex gap-8 p-6 border border-accent-gold/5 bg-navy/5 hover:border-accent-gold/20 transition-all">
-                    <div className="text-accent-gold bg-navy/20 p-4 rounded-sm h-fit">{cat.icon}</div>
-                    <div>
-                      <h4 className="font-serif italic text-2xl text-accent-gold mb-2">{cat.title}</h4>
-                      <p className="text-[11px] font-mono text-foreground/50 uppercase tracking-[0.2em] leading-relaxed">
-                        {cat.skills}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <ul className="font-mono text-[11px] space-y-6 text-foreground/70">
+                <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1 uppercase">FIT2173: Software Security</span> Design and realization of secure software for memory exploits and web applications.</li>
+                <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1 uppercase">FIT2004: Algorithms & Data Structures</span> Analysis of greedy, dynamic programming, and space-time complexity.</li>
+                <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1 uppercase">FIT2165: Computer Networks</span> Configuration of data communication and analysis of LAN/WAN architectures.</li>
+                <li className="border-l border-accent-gold/30 pl-4"><span className="text-accent-gold font-bold block mb-1 uppercase">FIT2094: Databases</span> Normalization, complex SQL queries, and theoretical basis of the relational model.</li>
+              </ul>
             </div>
           </div>
         </motion.div>
       </section>
 
+      {/* Expertise Section */}
+      <section id="expertise" className="section-container">
+        <motion.div {...fadeIn}>
+          <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
+            <span className="text-accent-gold text-lg font-mono">05.</span>
+            Core Competencies
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: "Cybersecurity", icon: <Lock size={20} />, skills: "Vulnerability Modeling, Pentesting, Cryptography, SSDLC, Access Control" },
+              { title: "Data Science & AI", icon: <Binary size={20} />, skills: "Statistical Analysis, LLM Integration, Data Viz, Algorithmic Efficiency" },
+              { title: "Infrastructure", icon: <Globe size={20} />, skills: "TCP/IP, Cloud Migration, Linux/Bash Architecture, Network Performance" }
+            ].map((cat, i) => (
+              <div key={i} className="flex gap-8 p-6 border border-accent-gold/5 bg-navy/5 hover:border-accent-gold/20 transition-all">
+                <div className="text-accent-gold bg-navy/20 p-4 rounded-sm h-fit">{cat.icon}</div>
+                <div>
+                  <h4 className="font-serif italic text-2xl text-accent-gold mb-2">{cat.title}</h4>
+                  <p className="text-[11px] font-mono text-foreground/50 uppercase tracking-[0.2em] leading-relaxed">
+                    {cat.skills}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* About & Cognitive Link Section */}
-      <section id="about" className="section-container bg-navy/5">
+      <section className="section-container bg-navy/5">
         <motion.div {...fadeIn}>
           <div className="max-w-5xl mx-auto">
             <h2 className="text-5xl mb-16 text-center font-serif italic text-accent-gold tracking-tight leading-tight">
-              "Structural integrity is common to all complex systems — whether linguistic or computational."
+              "Structural integrity is common to all complex systems, whether linguistic or computational."
             </h2>
             <div className="grid md:grid-cols-3 gap-12">
               {[
