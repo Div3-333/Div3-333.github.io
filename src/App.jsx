@@ -17,11 +17,8 @@ import {
   FileText,
   Activity,
   CheckCircle2,
-  ExternalLink,
   ChevronRight,
   AlertCircle,
-  Server,
-  ArrowRight,
   Layers,
   X
 } from 'lucide-react';
@@ -43,6 +40,11 @@ const Portfolio = () => {
       role: "Infrastructure & Security Lead",
       period: "Apr 2026 to Present",
       summary: "Responsible for full-stack infrastructure migration, web security hardening, and performance remediation.",
+      achievements: [
+        "Eradicated critical OWASP Top 10 vulnerabilities including public CRM webhook exposure.",
+        "Systematically neutralized ghost dependencies that previously throttled mobile performance.",
+        "Deployed strict Enterprise CSP whitelisting to provide an ironclad defense against XSS vectors."
+      ],
       metrics: [
         { label: "Vulnerabilities Remediated", value: "7 Critical", icon: <Shield size={14} /> },
         { label: "Mobile TBT Reduction", value: "95.3%", icon: <Activity size={14} /> },
@@ -228,7 +230,7 @@ const Portfolio = () => {
             DS
           </motion.span>
           <div className="flex gap-10 text-[10px] uppercase tracking-[0.3em] font-mono text-foreground/60">
-            {['Impact', 'Projects', 'Education', 'Expertise', 'About'].map((item) => (
+            {['About', 'Impact', 'Projects', 'Education', 'Expertise'].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-accent-gold transition-all">
                 {item}
               </a>
@@ -248,7 +250,7 @@ const Portfolio = () => {
           <h1 className="text-7xl md:text-9xl mb-8 text-glow font-serif">
             Divyanshu Sharma
           </h1>
-          <p className="font-mono text-accent-gold tracking-[0.3em] uppercase mb-12 text-xs md:text-sm max-w-4xl mx-auto leading-relaxed italic">
+          <p className="font-mono text-accent-gold tracking-[0.4em] uppercase mb-12 text-xs md:text-sm max-w-4xl mx-auto leading-relaxed italic">
             I build secure, data-driven systems across cybersecurity, AI, and infrastructure with a focus on measurable performance and technical correctness.
           </p>
           
