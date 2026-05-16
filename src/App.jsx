@@ -45,7 +45,8 @@ const Portfolio = () => {
       title: "Wrought-Iron",
       subtitle: "Secure Data Wrangling Desktop App",
       tech: ["Rust", "Python", "Django", "PyInstaller"],
-      description: "A security hardened cross platform application for sensitive data analysis. Implements strict SSDLC principles to eliminate backdoor vulnerabilities and ensure production ready integrity across Windows and macOS."
+      description: "A security hardened cross platform application for sensitive data analysis. Implements strict SSDLC principles to eliminate backdoor vulnerabilities and ensure production ready integrity across Windows and macOS.",
+      link: "https://github.com/Div3-333/Wrought-Iron"
     }
   ];
 
