@@ -15,7 +15,7 @@ const expertiseIcons = {
 
 export function Expertise({ motionProps }) {
   return (
-    <motion.section className="section section-alt" {...motionProps}>
+    <motion.section id="expertise" className="section section-alt" {...motionProps}>
       <div className="section-inner">
         <SectionHeader eyebrow="04 | Expertise" title="Where I am useful">
           Structural integrity shows up in language, data, security, and infrastructure. I like work where that
@@ -46,7 +46,7 @@ export function Expertise({ motionProps }) {
 
 export function AdjacentExpertise({ motionProps }) {
   return (
-    <motion.section className="section adjacent-section" {...motionProps}>
+    <motion.section id="adjacent-expertise" className="section adjacent-section" {...motionProps}>
       <div className="section-inner adjacent-layout">
         <div>
           <SectionHeader eyebrow="05 | Adjacent Expertise" title="The useful side interests">

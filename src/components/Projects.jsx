@@ -16,15 +16,15 @@ function ProjectVisual({ type, id }) {
         <div className="morphology-artifact">
           <div className="morphology-row">
             <span>Input token</span>
-            <strong>{'\u0BB5\u0BC0\u0B9F\u0BCD\u0B9F\u0BBF\u0BB2\u0BCD'}</strong>
+            <strong>வீட்டில்</strong>
           </div>
           <div className="morphology-row">
             <span>Detected root</span>
-            <strong>{'\u0BB5\u0BC0\u0B9F\u0BC1'}</strong>
+            <strong>வீடு</strong>
           </div>
           <div className="morphology-row">
             <span>Suffix / features</span>
-            <strong>{'\u0B87\u0BB2\u0BCD'} | locative case</strong>
+            <strong>இல் | locative case</strong>
           </div>
           <div className="morphology-row">
             <span>Confidence note</span>

@@ -25,7 +25,7 @@ export function Contact() {
           </a>
         </div>
       </div>
-      <p className="footer-note">(c) 2026 Divyanshu Sharma. Portfolio evidence is summarized for public review.</p>
+      <p className="footer-note">© 2026 Divyanshu Sharma. Portfolio evidence is summarized for public review.</p>
     </footer>
   );
 }

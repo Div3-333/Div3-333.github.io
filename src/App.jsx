@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import { CaseStudy } from './components/CaseStudy';
 import { ClosingNote } from './components/ClosingNote';
 import { Contact } from './components/Contact';
@@ -21,21 +23,48 @@ const reducedMotion = {
   transition: { duration: 0 },
 };
 
+const navItems = [
+  { label: 'Case Study', href: '#case-study' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Education', href: '#education' },
+  { label: 'Expertise', href: '#expertise' },
+  { label: 'Adjacent', href: '#adjacent-expertise' },
+  { label: 'Contact', href: '#contact' },
+];
+
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const motionProps = shouldReduceMotion ? reducedMotion : fadeIn;
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <main className="site-shell">
       <nav className="site-nav" aria-label="Primary navigation">
-        <a className="brand-mark" href="#top" aria-label="Divyanshu Sharma home">
+        <a className="brand-mark" href="#top" aria-label="Divyanshu Sharma home" onClick={closeMenu}>
           DS
         </a>
-        <div className="nav-links">
-          <a href="#case-study">Case Study</a>
-          <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
-          <a href="#contact">Contact</a>
+        <button
+          className="nav-toggle"
+          type="button"
+          aria-controls="primary-navigation"
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          {isMenuOpen ? <X size={19} /> : <Menu size={19} />}
+        </button>
+        <div
+          id="primary-navigation"
+          className={`nav-links${isMenuOpen ? ' is-open' : ''}`}
+          data-open={isMenuOpen}
+        >
+          {navItems.map((item) => (
+            <a href={item.href} key={item.href} onClick={closeMenu}>
+              {item.label}
+            </a>
+          ))}
         </div>
       </nav>
 

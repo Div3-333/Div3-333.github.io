@@ -38,8 +38,7 @@ export const proofMetrics = [
 
 export const caseEvidenceNotes = [
   'Metrics are reproduced from private reports as public-safe summaries.',
-  'Client names, domains, URLs, webhook paths, tokens, CRM identifiers, and customer data are removed.',
-  'Derivative artifacts preserve system shape using neutral placeholders such as client.example and CRM_SYSTEM.',
+  'Sensitive identifiers, domains, endpoints, tokens, and customer data are omitted.',
 ];
 
 export const performanceEvidence = [

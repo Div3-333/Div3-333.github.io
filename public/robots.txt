@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://div3-333.github.io/sitemap.xml
