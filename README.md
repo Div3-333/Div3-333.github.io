@@ -1,25 +1,32 @@
-# Portfolio: Divyanshu Sharma
+# Divyanshu Sharma Portfolio
 
-An industry-grade personal portfolio built with **React**, **Vite**, **Tailwind CSS v4**, and **Framer Motion**.
-
-## Objective
-To showcase technical depth across **Cybersecurity**, **Data Science**, and **AI Engineering** through high-signal commercial impact and academic research.
+Personal portfolio for Divyanshu Sharma, showcasing cybersecurity, data science, AI engineering, academic work, and selected technical projects.
 
 ## Tech Stack
-- **Framework:** React 19 (Vite)
-- **Styling:** Tailwind CSS v4
-- **Animations:** Framer Motion
-- **Icons:** Lucide-React
-- **Deployment:** GitHub Pages (via GitHub Actions)
 
-## Evidence Density
-- **Sanitized Case Studies:** Verifiable commercial impact from infrastructure migrations and security audits.
-- **Academic Rigor:** Breakdown of core Monash University (FIT) computer science units and research.
-- **Cross-Domain Application:** Cognitive linkages between linguistics, musicology, and mathematical pattern recognition.
+- **Framework:** React 19 with Vite
+- **Styling:** Tailwind CSS v4 plus custom CSS
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Deployment:** GitHub Pages via GitHub Actions
+
+## Content Approach
+
+- Commercial evidence is published as redacted, client-safe summaries.
+- Raw client reports, domains, webhook paths, CRM identifiers, screenshots, and PII are excluded from the public site.
+- Project cards emphasize problem, build scope, technical challenge, and inspectable evidence.
 
 ## Local Setup
+
 1. `npm install`
 2. `npm run dev`
 
+## Build
+
+```bash
+npm run build
+```
+
 ## Deployment
-Automated via `.github/workflows/deploy.yml` on push to `main`.
+
+Automated through `.github/workflows/deploy.yml` on pushes to `main`.
