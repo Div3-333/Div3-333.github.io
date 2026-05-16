@@ -12,7 +12,7 @@ Personal portfolio for Divyanshu Sharma, showcasing cybersecurity, data science,
 
 ## Content Approach
 
-- Commercial evidence is published as redacted, client-safe summaries.
+- Commercial evidence is published as sanitized public summaries.
 - Raw client reports, domains, webhook paths, CRM identifiers, screenshots, and PII are excluded from the public site.
 - Project cards emphasize problem, build scope, technical challenge, and inspectable evidence.
 

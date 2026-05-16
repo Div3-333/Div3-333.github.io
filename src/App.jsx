@@ -10,15 +10,12 @@ import {
   Database,
   Download,
   FileText,
-  Globe,
   GraduationCap,
   Layers,
   Lock,
   Mail,
   Network,
-  Palette,
   Shield,
-  Terminal,
 } from 'lucide-react';
 
 function GithubIcon({ size = 19 }) {
@@ -71,7 +68,7 @@ const proofMetrics = [
   {
     value: '4,090ms -> 190ms',
     label: 'Mobile total blocking time',
-    detail: 'Redacted Lighthouse before/after summary',
+    detail: 'Before/after Lighthouse summary',
     icon: Activity,
   },
   {
@@ -82,8 +79,8 @@ const proofMetrics = [
   },
   {
     value: '7',
-    label: 'Critical/high findings closed',
-    detail: 'Sanitized security remediation log',
+    label: 'Security findings closed',
+    detail: 'Sanitized remediation log',
     icon: Shield,
   },
   {
@@ -94,11 +91,25 @@ const proofMetrics = [
   },
 ];
 
-const redactionRules = [
-  'Client name, domains, URLs, webhook paths, CRM identifiers, and raw screenshots removed.',
-  'Finding IDs are public aliases, not original audit IDs.',
-  'Architecture diagrams are generalized from the real deployment shape.',
-  'Only aggregate metrics and non-sensitive remediation categories are shown.',
+const caseEvidenceNotes = [
+  'Metrics are taken from before/after audit material and shown as public summaries.',
+  'Finding IDs are aliases; domains, endpoints, and workflow identifiers are not published.',
+  'The diagrams preserve system shape without exposing vendor or client-specific implementation details.',
+];
+
+const performanceEvidence = [
+  {
+    label: 'Before migration',
+    value: '4,090ms',
+    width: '100%',
+    tone: 'before',
+  },
+  {
+    label: 'After migration',
+    value: '190ms',
+    width: '4.7%',
+    tone: 'after',
+  },
 ];
 
 const vulnerabilityMatrix = [
@@ -150,6 +161,7 @@ const projectCards = [
   {
     title: 'Indian Language Morphological Analyzer',
     subtitle: 'LLM-assisted linguistic analysis',
+    visual: 'morphology',
     tech: ['Next.js', 'FastAPI', 'Gemini API', 'JSON contracts'],
     problem:
       'Agglutinative and morphologically rich languages need analysis that preserves root, suffix, and contextual information instead of flattening everything into loose tokens.',
@@ -160,13 +172,14 @@ const projectCards = [
     evidence: [
       'Inspectable source repository',
       'Structured response schema',
-      'Sample root/suffix decomposition output',
+      'Sample root/suffix output model',
     ],
-    link: 'https://github.com/Div3-333/cognition-n-context',
+    links: [{ label: 'Source', href: 'https://github.com/Div3-333/cognition-n-context' }],
   },
   {
     title: 'Wrought-Iron',
     subtitle: 'Local-first secure data wrangling',
+    visual: 'wrought',
     tech: ['Rust', 'Python', 'Django', 'Desktop packaging'],
     problem:
       'Sensitive datasets are often pushed through convenience tooling that treats file handling, local processing, and release integrity as afterthoughts.',
@@ -179,11 +192,12 @@ const projectCards = [
       'Release hardening checklist',
       'Local processing architecture notes',
     ],
-    link: 'https://github.com/Div3-333/Wrought-Iron',
+    links: [{ label: 'Source', href: 'https://github.com/Div3-333/Wrought-Iron' }],
   },
   {
     title: 'Indus Valley Script Research',
     subtitle: 'Computational epigraphy and corpus modeling',
+    visual: 'indus',
     tech: ['Python', 'Statistics', 'Corpus hygiene', 'Philology'],
     problem:
       'Undeciphered script claims often jump to visual resemblance before establishing distributional baselines and positional grammar.',
@@ -193,10 +207,10 @@ const projectCards = [
       'The research had to avoid phonetic assumptions while still finding structure across more than 5,600 inscriptions.',
     evidence: [
       'Research repository',
-      'Frequency tables',
+      'Corpus frequency tables',
       'Positional grammar summaries',
     ],
-    link: 'https://github.com/Div3-333/Indus-Valley-Script-IVS',
+    links: [{ label: 'Source', href: 'https://github.com/Div3-333/Indus-Valley-Script-IVS' }],
   },
 ];
 
@@ -289,20 +303,20 @@ function ArchitectureMap({ variant }) {
       <p className="architecture-note">
         {before
           ? 'Sensitive workflow details were reachable from the public runtime.'
-          : 'Requests now cross validation, policy, and secret isolation before private systems.'}
+          : 'Requests now pass through validation, policy, and secret isolation before private workflows.'}
       </p>
     </div>
   );
 }
 
-function RedactedArtifactPreview() {
+function LighthouseSnapshot() {
   return (
-    <div className="artifact-preview" aria-label="Redacted evidence preview">
+    <div className="artifact-preview" aria-label="Sanitized Lighthouse summary">
       <div className="artifact-toolbar">
         <span />
         <span />
         <span />
-        <strong>REDACTED_CASE_STUDY.log</strong>
+        <strong>PUBLIC_LIGHTHOUSE_SUMMARY</strong>
       </div>
       <div className="artifact-grid">
         <div className="artifact-score">
@@ -325,7 +339,116 @@ function RedactedArtifactPreview() {
         <span className="line" />
         <span className="line short" />
       </div>
-      <div className="artifact-stamp">CLIENT-SAFE PUBLIC VIEW</div>
+      <div className="artifact-stamp">PUBLIC SUMMARY</div>
+    </div>
+  );
+}
+
+function PerformanceDeltaPanel() {
+  return (
+    <div className="performance-panel">
+      <div className="visual-heading">
+        <Activity size={18} />
+        <div>
+          <span>Performance artifact</span>
+          <h3>Mobile TBT reduction</h3>
+        </div>
+      </div>
+      <div className="bar-comparison">
+        {performanceEvidence.map((item) => (
+          <div className="bar-row" key={item.label}>
+            <div className="bar-row-meta">
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+            <div className="bar-track">
+              <div
+                className={`bar-fill bar-${item.tone}`}
+                style={{ '--bar-width': item.width }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+      <p>
+        The public figure is the aggregate delta only. The original report includes client-specific URLs and
+        internal page data, so those details stay out of the site.
+      </p>
+    </div>
+  );
+}
+
+function SecurityTracker() {
+  return (
+    <div className="security-tracker">
+      <div className="visual-heading">
+        <Shield size={18} />
+        <div>
+          <span>Remediation tracker</span>
+          <h3>Seven findings closed</h3>
+        </div>
+      </div>
+      <div className="tracker-grid" aria-label="Sanitized remediation status">
+        {vulnerabilityMatrix.map((item) => (
+          <div className="tracker-cell" key={item.id}>
+            <span>{item.id}</span>
+            <strong>{item.risk}</strong>
+            <em>Closed</em>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProjectVisual({ type }) {
+  if (type === 'morphology') {
+    return (
+      <div className="project-visual morphology-visual" aria-label="Sample morphology output">
+        <div className="terminal-bar">
+          <span />
+          <span />
+          <span />
+          <strong>sample-output.json</strong>
+        </div>
+        <pre>{`{
+  "token": "gacchati",
+  "root": "gam",
+  "features": ["present", "3sg"],
+  "confidence_note": "context checked"
+}`}</pre>
+      </div>
+    );
+  }
+
+  if (type === 'wrought') {
+    return (
+      <div className="project-visual pipeline-visual" aria-label="Local processing pipeline">
+        {['Local file', 'Validator', 'Python worker', 'Clean export'].map((step, index) => (
+          <div className="pipeline-step" key={step}>
+            <Database size={16} />
+            <span>{step}</span>
+            {index < 3 && <ArrowRight size={15} />}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="project-visual corpus-visual" aria-label="Indus Valley Script corpus coverage chart">
+      <div className="coverage-stat">
+        <span>60 signs</span>
+        <strong>75%</strong>
+        <p>of the analyzed corpus</p>
+      </div>
+      <div className="coverage-chart">
+        <div className="coverage-fill" />
+      </div>
+      <div className="coverage-legend">
+        <span>High-frequency sign set</span>
+        <span>Long tail</span>
+      </div>
     </div>
   );
 }
@@ -371,8 +494,8 @@ function App() {
           <p className="hero-kicker">Cybersecurity | Data Science | AI Engineering</p>
           <h1>Divyanshu Sharma</h1>
           <p className="hero-copy">
-            I build secure, data-heavy systems with the kind of evidence a technical reviewer can inspect:
-            remediation logs, architecture decisions, performance deltas, and source code.
+            I build secure, data-heavy systems across cybersecurity, AI, and infrastructure, with an emphasis
+            on measurable performance, clear trust boundaries, and code that can be reviewed.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="/Divyanshu_Sharma_CV.pdf" download>
@@ -381,7 +504,7 @@ function App() {
             </a>
             <a className="button button-secondary" href="#case-study">
               <FileText size={18} />
-              View redacted case study
+              Open case study
             </a>
           </div>
           <div className="social-row" aria-label="Social links">
@@ -414,28 +537,20 @@ function App() {
         </div>
       </section>
 
-      <motion.section className="section section-redaction" {...fadeIn}>
-        <div className="section-inner redaction-layout">
-          <div>
-            <p className="eyebrow">Client-Safe Evidence Standard</p>
-            <h2>Public proof without leaking private systems.</h2>
-          </div>
-          <ul className="redaction-list">
-            {redactionRules.map((rule) => (
-              <li key={rule}>
-                <Shield size={16} />
-                <span>{rule}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </motion.section>
-
       <motion.section id="case-study" className="section" {...fadeIn}>
         <div className="section-inner">
-          <SectionHeader eyebrow="01 | Commercial Case Study" title="Renewable energy platform hardening">
-            A client-anonymous public case study reconstructed from redacted audit and Lighthouse evidence.
+          <SectionHeader eyebrow="01 | Commercial Case Study" title="Commercial platform hardening">
+            A public version of the work, focused on the decisions and metrics that can be shared safely.
           </SectionHeader>
+
+          <div className="evidence-note">
+            {caseEvidenceNotes.map((note) => (
+              <div key={note}>
+                <CheckCircle2 size={15} />
+                <span>{note}</span>
+              </div>
+            ))}
+          </div>
 
           <div className="case-layout">
             <div className="case-summary">
@@ -453,7 +568,7 @@ function App() {
               </div>
               <p>
                 Migrated a public lead-capture site away from a proprietary builder, reduced client-side
-                execution cost, and moved sensitive workflow integration behind controlled server-side boundaries.
+                execution cost, and moved private workflow integration behind controlled server-side boundaries.
               </p>
               <div className="ownership-block">
                 <h3>Personal ownership</h3>
@@ -465,7 +580,10 @@ function App() {
                 </ul>
               </div>
             </div>
-            <RedactedArtifactPreview />
+            <div className="case-visual-stack">
+              <LighthouseSnapshot />
+              <PerformanceDeltaPanel />
+            </div>
           </div>
 
           <div className="comparison-grid">
@@ -482,12 +600,14 @@ function App() {
               <p>Validated after migration with trimmed scripts, isolated secrets, and cleaner page semantics.</p>
             </div>
             <div className="comparison-panel is-verified">
-              <p className="panel-label">Verified</p>
+              <p className="panel-label">Checked</p>
               <h3>Lighthouse checks</h3>
               <div className="delta-number">100 / 100</div>
-              <p>SEO and accessibility reached perfect scores in the redacted post-migration reports.</p>
+              <p>SEO and accessibility reached perfect scores in the post-migration summaries.</p>
             </div>
           </div>
+
+          <SecurityTracker />
 
           <div className="architecture-section">
             <div className="architecture-heading">
@@ -543,6 +663,7 @@ function App() {
           <div className="project-stack">
             {projectCards.map((project) => (
               <article className="project-panel" key={project.title}>
+                <ProjectVisual type={project.visual} />
                 <div className="project-main">
                   <p className="project-subtitle">{project.subtitle}</p>
                   <h3>{project.title}</h3>
@@ -577,11 +698,15 @@ function App() {
                     ))}
                   </div>
                 </div>
-                <a className="project-link" href={project.link} target="_blank" rel="noreferrer">
-                  <Code2 size={18} />
-                  Source
-                  <ArrowUpRight size={16} />
-                </a>
+                <div className="project-links">
+                  {project.links.map((link) => (
+                    <a className="project-link" href={link.href} target="_blank" rel="noreferrer" key={link.href}>
+                      <Code2 size={18} />
+                      {link.label}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
@@ -646,34 +771,17 @@ function App() {
         </div>
       </motion.section>
 
-      <motion.section className="section" {...fadeIn}>
-        <div className="section-inner cross-domain">
-          <div className="cross-domain-copy">
-            <p className="eyebrow">Cross-domain edge</p>
-            <h2>Language, music, and visual systems sharpen how I reason about structure.</h2>
-            <p>
-              Linguistics helps with tokenization and LLM evaluation. South Asian music theory strengthens
-              pattern thinking. Traditional visual arts keep me attentive to proportion, hierarchy, and system clarity.
-            </p>
-          </div>
-          <div className="discipline-grid">
-            <div>
-              <Globe size={20} />
-              <span>Linguistics</span>
-            </div>
-            <div>
-              <Terminal size={20} />
-              <span>Computation</span>
-            </div>
-            <div>
-              <Database size={20} />
-              <span>Data modeling</span>
-            </div>
-            <div>
-              <Palette size={20} />
-              <span>Visual rigor</span>
-            </div>
-          </div>
+      <motion.section className="section closing-section" {...fadeIn}>
+        <div className="section-inner closing-note">
+          <p className="eyebrow">Working thesis</p>
+          <blockquote>
+            Structural integrity shows up in language, data, security, and infrastructure. I like work where
+            that structure has to hold under real constraints.
+          </blockquote>
+          <p>
+            My linguistics and arts background still shapes how I think, but the portfolio keeps the focus on
+            engineering output: code, systems, measurements, and decisions.
+          </p>
         </div>
       </motion.section>
 
@@ -699,7 +807,7 @@ function App() {
             </a>
           </div>
         </div>
-        <p className="footer-note">(c) 2026 Divyanshu Sharma. Public evidence is redacted by default.</p>
+        <p className="footer-note">(c) 2026 Divyanshu Sharma. Portfolio evidence is summarized for public review.</p>
       </footer>
     </main>
   );
