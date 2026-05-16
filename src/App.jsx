@@ -122,7 +122,7 @@ const vulnerabilityMatrix = [
     owasp: 'Cryptographic Failures',
     summary: 'Client-side runtime exposed private workflow credentials to public inspection.',
     remediation: 'Moved private workflow submission behind serverless validation and rotated exposed values.',
-    verification: 'Bundle review + credential rotation check',
+    verification: 'Server-side boundary test',
     status: 'Closed',
   },
   {
@@ -131,7 +131,7 @@ const vulnerabilityMatrix = [
     owasp: 'Broken Access Control',
     summary: 'Public intake path allowed unauthenticated workflow submission.',
     remediation: 'Moved submission handling behind serverless validation boundary.',
-    verification: 'Manual request replay + schema validation test',
+    verification: 'Manual replay test',
     status: 'Closed',
   },
   {
@@ -140,7 +140,7 @@ const vulnerabilityMatrix = [
     owasp: 'Security Misconfiguration',
     summary: 'Browser execution policy allowed broad script execution and weak source control.',
     remediation: 'Replaced permissive script rules with a Content Security Policy allowlist.',
-    verification: 'Header inspection + browser console check',
+    verification: 'CSP header review',
     status: 'Closed',
   },
   {
@@ -149,7 +149,7 @@ const vulnerabilityMatrix = [
     owasp: 'Vulnerable Components',
     summary: 'Public bundle included stale dependencies and unnecessary runtime surface.',
     remediation: 'Removed unused packages, reduced shipped JavaScript, and rechecked lockfile exposure.',
-    verification: 'Dependency audit + bundle inspection',
+    verification: 'Dependency audit',
     status: 'Closed',
   },
   {
@@ -158,7 +158,7 @@ const vulnerabilityMatrix = [
     owasp: 'Injection',
     summary: 'Lead object fields crossed trust boundaries before server-side validation.',
     remediation: 'Validated LEAD_OBJECT payloads before downstream private workflow writes.',
-    verification: 'Schema validation test + malformed payload replay',
+    verification: 'Schema validation check',
     status: 'Closed',
   },
   {
@@ -167,7 +167,7 @@ const vulnerabilityMatrix = [
     owasp: 'Security Logging and Monitoring',
     summary: 'Public runtime made performance and failure diagnosis difficult during intake flow testing.',
     remediation: 'Reduced script chain and separated public rendering from private workflow handling.',
-    verification: 'Before/after Lighthouse mobile audit',
+    verification: 'Lighthouse re-run',
     status: 'Closed',
   },
   {
@@ -176,7 +176,7 @@ const vulnerabilityMatrix = [
     owasp: 'Security Misconfiguration',
     summary: 'Metadata, landmarks, and crawl-facing semantics were inconsistent after builder export.',
     remediation: 'Corrected page semantics, contrast, landmarks, and crawl-facing metadata.',
-    verification: 'Accessibility audit + SEO crawl summary',
+    verification: 'Accessibility scan',
     status: 'Closed',
   },
 ];
@@ -186,6 +186,7 @@ const projectCards = [
     title: 'Indian Language Morphological Analyzer',
     subtitle: 'LLM-assisted linguistic analysis',
     visual: 'morphology',
+    artifactId: 'morphology-sample-output',
     tech: ['Next.js', 'FastAPI', 'Gemini API', 'JSON contracts'],
     problem:
       'Agglutinative and morphologically rich languages need analysis that preserves root, suffix, and contextual information instead of flattening everything into loose tokens.',
@@ -198,12 +199,16 @@ const projectCards = [
       'Structured response schema validity',
       'Root/suffix sample output artifact',
     ],
-    links: [{ label: 'Source', href: 'https://github.com/Div3-333/cognition-n-context' }],
+    links: [
+      { label: 'Source', href: 'https://github.com/Div3-333/cognition-n-context', kind: 'source' },
+      { label: 'Sample Output', href: '#morphology-sample-output', kind: 'artifact' },
+    ],
   },
   {
     title: 'Wrought-Iron',
     subtitle: 'Local-first secure data wrangling',
     visual: 'wrought',
+    artifactId: 'wrought-architecture',
     tech: ['Rust', 'Python', 'Django', 'Desktop packaging'],
     problem:
       'Sensitive datasets are often pushed through convenience tooling that treats file handling, local processing, and release integrity as afterthoughts.',
@@ -216,12 +221,16 @@ const projectCards = [
       'Local-only processing pipeline',
       'No cloud upload required',
     ],
-    links: [{ label: 'Source', href: 'https://github.com/Div3-333/Wrought-Iron' }],
+    links: [
+      { label: 'Source', href: 'https://github.com/Div3-333/Wrought-Iron', kind: 'source' },
+      { label: 'Releases / Architecture', href: '#wrought-architecture', kind: 'artifact' },
+    ],
   },
   {
     title: 'Indus Valley Script Research',
     subtitle: 'Computational epigraphy and corpus modeling',
     visual: 'indus',
+    artifactId: 'indus-frequency-notes',
     tech: ['Python', 'Statistics', 'Corpus hygiene', 'Philology'],
     problem:
       'Undeciphered script claims often jump to visual resemblance before establishing distributional baselines and positional grammar.',
@@ -234,7 +243,10 @@ const projectCards = [
       'Corpus frequency tables',
       'Mini distribution chart',
     ],
-    links: [{ label: 'Source', href: 'https://github.com/Div3-333/Indus-Valley-Script-IVS' }],
+    links: [
+      { label: 'Source', href: 'https://github.com/Div3-333/Indus-Valley-Script-IVS', kind: 'source' },
+      { label: 'Frequency Notes', href: '#indus-frequency-notes', kind: 'artifact' },
+    ],
   },
 ];
 
@@ -346,7 +358,7 @@ function ArchitectureMap({ variant }) {
       ]
     : [
         { label: 'Browser' },
-        { label: 'Edge deployment' },
+        { label: 'Edge host' },
         { label: 'Serverless validation', badge: 'Schema validation', tone: 'safe' },
         { label: 'Secret isolation', badge: 'Secrets removed from client', tone: 'safe' },
         { label: 'Private workflow', badge: 'CSP allowlist', tone: 'safe' },
@@ -383,20 +395,30 @@ function ClientSafeLighthouseArtifact() {
     <div className="lighthouse-artifact" aria-label="Redacted Lighthouse public summary artifact">
       <div className="artifact-report-header">
         <div>
-          <span>Report type</span>
-          <strong>Lighthouse mobile audit | redacted public summary</strong>
+          <span>Redacted report excerpt</span>
+          <strong>Redacted Lighthouse summary</strong>
         </div>
         <em>Private report, public-safe summary</em>
       </div>
 
       <div className="artifact-metric-grid">
         <div>
-          <span>Before</span>
+          <span>Audit type</span>
+          <strong>Mobile</strong>
+          <p>Device class</p>
+        </div>
+        <div>
+          <span>URL</span>
+          <strong>Redacted</strong>
+          <p>Client URL withheld</p>
+        </div>
+        <div>
+          <span>Before TBT</span>
           <strong>4,090ms</strong>
           <p>Total blocking time</p>
         </div>
         <div>
-          <span>After</span>
+          <span>After TBT</span>
           <strong>190ms</strong>
           <p>Total blocking time</p>
         </div>
@@ -413,7 +435,7 @@ function ClientSafeLighthouseArtifact() {
       </div>
 
       <div className="redacted-field-grid" aria-label="Redacted Lighthouse fields">
-        {['URL', 'Crawl path', 'Client domain', 'Internal page labels'].map((field) => (
+        {['Client domain', 'Crawl path', 'Internal page labels'].map((field) => (
           <div className="redacted-field" key={field}>
             <span>{field}</span>
             <strong>REDACTED</strong>
@@ -422,7 +444,7 @@ function ClientSafeLighthouseArtifact() {
       </div>
 
       <p className="artifact-note">
-        Values are reproduced from private client report; raw report withheld for confidentiality.
+        Values are reproduced from private client report. Client URL and page labels withheld.
       </p>
     </div>
   );
@@ -485,10 +507,10 @@ function SecurityTracker() {
   );
 }
 
-function ProjectVisual({ type }) {
+function ProjectVisual({ type, id }) {
   if (type === 'morphology') {
     return (
-      <div className="project-visual morphology-visual" aria-label="Sample morphology output">
+      <div id={id} className="project-visual morphology-visual" aria-label="Sample morphology output">
         <div className="terminal-bar">
           <span />
           <span />
@@ -498,15 +520,15 @@ function ProjectVisual({ type }) {
         <div className="morphology-artifact">
           <div className="morphology-row">
             <span>Input token</span>
-            <strong>வீட்டில்</strong>
+            <strong>{'\u0BB5\u0BC0\u0B9F\u0BCD\u0B9F\u0BBF\u0BB2\u0BCD'}</strong>
           </div>
           <div className="morphology-row">
             <span>Detected root</span>
-            <strong>வீடு</strong>
+            <strong>{'\u0BB5\u0BC0\u0B9F\u0BC1'}</strong>
           </div>
           <div className="morphology-row">
             <span>Suffix / features</span>
-            <strong>இல் | locative case</strong>
+            <strong>{'\u0B87\u0BB2\u0BCD'} | locative case</strong>
           </div>
           <div className="morphology-row">
             <span>Confidence note</span>
@@ -520,7 +542,7 @@ function ProjectVisual({ type }) {
 
   if (type === 'wrought') {
     return (
-      <div className="project-visual pipeline-visual" aria-label="Local processing pipeline">
+      <div id={id} className="project-visual pipeline-visual" aria-label="Local processing pipeline">
         {['Import file', 'Validate schema', 'Local transform', 'Preview diff', 'Export cleaned dataset'].map((step, index) => (
           <div className="pipeline-step" key={step}>
             <Database size={16} />
@@ -534,7 +556,7 @@ function ProjectVisual({ type }) {
   }
 
   return (
-    <div className="project-visual corpus-visual" aria-label="Indus Valley Script corpus coverage chart">
+    <div id={id} className="project-visual corpus-visual" aria-label="Indus Valley Script corpus coverage chart">
       <div className="frequency-header">
         <span>Frequency distribution</span>
         <strong>Top 60 signs</strong>
@@ -596,6 +618,9 @@ function App() {
         >
           <p className="hero-kicker">Cybersecurity | Data Science | AI Engineering</p>
           <h1>Divyanshu Sharma</h1>
+          <p className="hero-thesis">
+            I build secure, data-heavy systems where performance, trust boundaries, and technical correctness matter.
+          </p>
           <p className="hero-copy">
             Cybersecurity and Data Science student at Monash University. My studies gave me the frameworks;
             real infrastructure migrations, live vulnerability identification, and briefing non-technical
@@ -699,7 +724,7 @@ function App() {
             </div>
             <div className="comparison-panel is-after">
               <p className="panel-label">After</p>
-              <h3>Edge deployment</h3>
+              <h3>Edge host</h3>
               <div className="delta-number">190ms</div>
               <p>Validated after migration with trimmed scripts, isolated secrets, and cleaner page semantics.</p>
             </div>
@@ -775,7 +800,7 @@ function App() {
           <div className="project-stack">
             {projectCards.map((project) => (
               <article className="project-panel" key={project.title}>
-                <ProjectVisual type={project.visual} />
+                <ProjectVisual type={project.visual} id={project.artifactId} />
                 <div className="project-main">
                   <p className="project-subtitle">{project.subtitle}</p>
                   <h3>{project.title}</h3>
@@ -811,13 +836,24 @@ function App() {
                   </div>
                 </div>
                 <div className="project-links">
-                  {project.links.map((link) => (
-                    <a className="project-link" href={link.href} target="_blank" rel="noreferrer" key={link.href}>
-                      <Code2 size={18} />
-                      {link.label}
-                      <ArrowUpRight size={16} />
-                    </a>
-                  ))}
+                  {project.links.map((link) => {
+                    const isExternal = link.href.startsWith('http');
+                    const Icon = link.kind === 'source' ? Code2 : FileText;
+
+                    return (
+                      <a
+                        className="project-link"
+                        href={link.href}
+                        target={isExternal ? '_blank' : undefined}
+                        rel={isExternal ? 'noreferrer' : undefined}
+                        key={link.href}
+                      >
+                        <Icon size={18} />
+                        {link.label}
+                        {isExternal && <ArrowUpRight size={16} />}
+                      </a>
+                    );
+                  })}
                 </div>
               </article>
             ))}

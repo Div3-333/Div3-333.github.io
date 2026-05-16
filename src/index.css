@@ -237,6 +237,16 @@ a {
   text-wrap: balance;
 }
 
+.hero-thesis {
+  width: min(760px, 100%);
+  margin: 0 auto 18px;
+  color: var(--gold);
+  font-size: clamp(1.05rem, 2vw, 1.36rem);
+  font-weight: 700;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
 .hero-copy {
   width: min(780px, 100%);
   margin: 0 auto;
@@ -605,7 +615,7 @@ a {
 
 .artifact-metric-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   border: 1px solid rgba(246, 239, 225, 0.11);
   background: rgba(246, 239, 225, 0.1);
@@ -1631,6 +1641,11 @@ a {
 
   .hero-content {
     text-align: left;
+  }
+
+  .hero-thesis,
+  .hero-copy {
+    margin-inline: 0;
   }
 
   .hero-actions,
