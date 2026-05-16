@@ -482,7 +482,7 @@ const Portfolio = () => {
                     </div>
                   </div>
                   <div className="flex md:flex-col gap-4">
-                    <a href={project.link} target="_blank" className="flex items-center justify-center gap-4 font-mono text-[10px] text-accent-gold hover:text-foreground transition-all uppercase tracking-[0.3em] bg-navy/30 px-10 py-5 border border-accent-gold/10 hover:border-accent-gold/40 group relative overflow-hidden">
+                    <a href={project.link} target="_blank" className="flex items-center justify-center gap-4 font-mono text-[10px] text-accent-gold hover:text-foreground transition-all uppercase tracking-[0.3em] bg-navy/30 px-10 py-5 border border-accent-gold/10 hover:border-accent-gold/40 group relative overflow-hidden text-center">
                       <span className="relative z-10">Source Code</span>
                       <Code2 size={18} className="relative z-10 group-hover:scale-110 transition-transform" />
                       <div className="absolute inset-0 bg-accent-gold/5 translate-y-full group-hover:translate-y-0 transition-transform" />
@@ -496,83 +496,84 @@ const Portfolio = () => {
         </motion.div>
       </section>
 
-      {/* Education & Expertise Section */}
+      {/* Education Section */}
       <section id="education" className="section-container bg-navy/5">
         <motion.div {...fadeIn}>
-          <div className="grid md:grid-cols-[1.2fr_1.8fr] gap-24 items-start">
-            <div>
-              <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
-                <span className="text-accent-gold text-lg font-mono tracking-tighter">04.</span>
-                Education
-              </h2>
-              <div className="bg-background/40 border border-accent-gold/10 p-10 rounded-sm relative shadow-2xl">
-                <Shield className="absolute top-8 right-8 text-accent-gold/20" size={40} />
-                <div className="mb-12">
-                  <h3 className="text-accent-gold font-serif text-4xl italic mb-3 tracking-tight">Monash University</h3>
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] opacity-60 text-foreground">Bachelor of Computer Science</p>
-                  <div className="flex gap-8 mt-6 font-mono text-xs text-accent-gold uppercase tracking-widest border-t border-accent-gold/10 pt-4">
-                    <span>GPA: 3.778 / 4.0</span>
-                    <span>WAM: 87.3</span>
-                  </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
+              <span className="text-accent-gold text-lg font-mono tracking-tighter">04.</span>
+              Education
+            </h2>
+            <div className="bg-background/40 border border-accent-gold/10 p-10 rounded-sm relative shadow-2xl">
+              <Shield className="absolute top-8 right-8 text-accent-gold/20" size={40} />
+              <div className="mb-12">
+                <h3 className="text-accent-gold font-serif text-4xl italic mb-3 tracking-tight">Monash University</h3>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] opacity-60 text-foreground">Bachelor of Computer Science</p>
+                <div className="flex gap-8 mt-6 font-mono text-xs text-accent-gold uppercase tracking-widest border-t border-accent-gold/10 pt-4">
+                  <span>GPA: 3.778 / 4.0</span>
+                  <span>WAM: 87.3</span>
                 </div>
-                <ul className="font-mono text-[11px] space-y-10 text-foreground/70">
-                  {education.map((u, i) => (
-                    <li key={i} className="group">
-                      <span className="text-accent-gold font-bold block mb-2 uppercase tracking-tighter text-sm group-hover:translate-x-2 transition-transform">{u.unit}: {u.name}</span>
-                      <p className="pl-6 border-l border-accent-gold/20">{u.outcome}</p>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </div>
-            
-            <div className="space-y-20">
-              <section>
-                <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
-                  <span className="text-accent-gold text-lg font-mono tracking-tighter">05.</span>
-                  Core Expertise
-                </h2>
-                <div className="grid gap-8">
-                  {[
-                    { title: "Cybersecurity", icon: <Lock size={22} />, skills: "Vulnerability Modeling, Pentesting, Cryptography, SSDLC, Access Control" },
-                    { title: "Data Science & AI", icon: <Binary size={22} />, skills: "Statistical Analysis, LLM Integration, Data Viz, Algorithmic Efficiency" },
-                    { title: "Infrastructure", icon: <Globe size={22} />, skills: "TCP/IP, Cloud Migration, Linux/Bash Architecture, Network Performance" }
-                  ].map((cat, i) => (
-                    <div key={i} className="flex gap-10 p-10 border border-accent-gold/5 bg-background/40 hover:border-accent-gold/20 transition-all group">
-                      <div className="text-accent-gold bg-navy/40 p-6 rounded-sm h-fit group-hover:scale-110 group-hover:bg-accent-gold/10 transition-all border border-accent-gold/10">{cat.icon}</div>
-                      <div>
-                        <h4 className="font-serif italic text-3xl text-accent-gold mb-4 tracking-tight">{cat.title}</h4>
-                        <p className="text-xs font-mono text-foreground/50 uppercase tracking-[0.2em] leading-relaxed">
-                          {cat.skills}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Centered CTA */}
-              <section className="pt-10">
-                <div className="p-16 border border-accent-gold/10 bg-navy/20 text-center relative overflow-hidden group">
-                  <div className="relative z-10">
-                    <p className="font-mono text-xs text-foreground/50 uppercase tracking-[0.4em] mb-10">Interested in secure, data-heavy systems?</p>
-                    <a href="mailto:divyanshu.s.cs@gmail.com" className="text-4xl md:text-7xl font-serif italic text-accent-gold hover:text-foreground transition-all border-b-2 border-accent-gold/10 pb-6 inline-block hover:border-accent-gold">
-                      Get in touch.
-                    </a>
-                  </div>
-                  <Cpu className="absolute -top-12 -left-12 text-accent-gold/5 w-48 h-48 group-hover:rotate-12 transition-transform duration-1000" />
-                  <Database className="absolute -bottom-12 -right-12 text-accent-gold/5 w-48 h-48 group-hover:-rotate-12 transition-transform duration-1000" />
-                </div>
-              </section>
+              <ul className="font-mono text-[11px] space-y-10 text-foreground/70">
+                {education.map((u, i) => (
+                  <li key={i} className="group">
+                    <span className="text-accent-gold font-bold block mb-2 uppercase tracking-tighter text-sm group-hover:translate-x-2 transition-transform">{u.unit}: {u.name}</span>
+                    <p className="pl-6 border-l border-accent-gold/20">{u.outcome}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Narrative Section */}
+      {/* Expertise Section */}
+      <section id="expertise" className="section-container">
+        <motion.div {...fadeIn}>
+          <h2 className="text-4xl mb-12 flex items-center gap-4 border-b border-accent-gold/10 pb-6 uppercase tracking-tighter font-serif italic">
+            <span className="text-accent-gold text-lg font-mono tracking-tighter">05.</span>
+            Core Expertise
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: "Cybersecurity", icon: <Lock size={22} />, skills: "Vulnerability Modeling, Pentesting, Cryptography, SSDLC, Access Control" },
+              { title: "Data Science & AI", icon: <Binary size={22} />, skills: "Statistical Analysis, LLM Integration, Data Viz, Algorithmic Efficiency" },
+              { title: "Infrastructure", icon: <Globe size={22} />, skills: "TCP/IP, Cloud Migration, Linux/Bash Architecture, Network Performance" }
+            ].map((cat, i) => (
+              <div key={i} className="flex gap-10 p-10 border border-accent-gold/5 bg-background/40 hover:border-accent-gold/20 transition-all group">
+                <div className="text-accent-gold bg-navy/40 p-6 rounded-sm h-fit group-hover:scale-110 group-hover:bg-accent-gold/10 transition-all border border-accent-gold/10">{cat.icon}</div>
+                <div>
+                  <h4 className="font-serif italic text-3xl text-accent-gold mb-4 tracking-tight">{cat.title}</h4>
+                  <p className="text-xs font-mono text-foreground/50 uppercase tracking-[0.2em] leading-relaxed">
+                    {cat.skills}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Centered CTA Section */}
       <section className="section-container">
         <motion.div {...fadeIn}>
-          <div className="max-w-5xl mx-auto border-t border-accent-gold/10 pt-24 text-center">
+          <div className="p-16 md:p-24 border border-accent-gold/10 bg-navy/20 text-center relative overflow-hidden group rounded-sm shadow-2xl">
+            <div className="relative z-10">
+              <p className="font-mono text-xs text-foreground/50 uppercase tracking-[0.4em] mb-10">Interested in secure, data-heavy systems?</p>
+              <a href="mailto:divyanshu.s.cs@gmail.com" className="text-4xl md:text-8xl font-serif italic text-accent-gold hover:text-foreground transition-all border-b-2 border-accent-gold/10 pb-8 inline-block hover:border-accent-gold tracking-tighter">
+                Get in touch.
+              </a>
+            </div>
+            <Cpu className="absolute -top-12 -left-12 text-accent-gold/5 w-64 h-48 group-hover:rotate-12 transition-transform duration-1000" />
+            <Database className="absolute -bottom-12 -right-12 text-accent-gold/5 w-64 h-48 group-hover:-rotate-12 transition-transform duration-1000" />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Narrative Section */}
+      <section className="section-container bg-navy/5">
+        <motion.div {...fadeIn}>
+          <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-4xl md:text-6xl mb-16 font-serif italic text-accent-gold tracking-tight leading-tight">
               "Structural integrity is common to all complex systems, whether linguistic or computational."
             </h2>
@@ -606,7 +607,7 @@ const Portfolio = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-24 border-t border-accent-gold/5 text-center bg-navy/5">
+      <footer className="py-24 border-t border-accent-gold/5 text-center bg-background">
         <div className="flex flex-col items-center gap-10">
           <div className="flex gap-20">
              <a href="https://github.com/Div3-333" className="text-foreground/40 hover:text-accent-gold transition-colors font-mono text-xs uppercase tracking-[0.5em]">GitHub</a>
