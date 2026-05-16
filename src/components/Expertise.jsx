@@ -18,7 +18,8 @@ export function Expertise({ motionProps }) {
     <motion.section className="section section-alt" {...motionProps}>
       <div className="section-inner">
         <SectionHeader eyebrow="04 | Expertise" title="Where I am useful">
-          Security, data, and infrastructure work best when they are treated as one system rather than separate boxes.
+          Structural integrity shows up in language, data, security, and infrastructure. I like work where that
+          structure has to hold under real constraints.
         </SectionHeader>
         <div className="expertise-grid">
           {expertise.map((item) => {

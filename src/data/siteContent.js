@@ -2,7 +2,7 @@ export const heroContent = {
   kicker: 'Cybersecurity | Data Science | AI Engineering',
   title: 'Divyanshu Sharma',
   thesis:
-    'I build secure, data-heavy systems where performance, trust boundaries, and technical correctness matter.',
+    'I build secure, data-heavy systems across cybersecurity, AI, and infrastructure, with an emphasis on measurable performance, clear trust boundaries, and code that can be reviewed.',
   target:
     'Interested in cybersecurity, application security, and data-focused engineering roles where correctness, trust boundaries, and technical depth matter.',
   copy:
